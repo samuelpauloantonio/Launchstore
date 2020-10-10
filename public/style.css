@@ -1,0 +1,130 @@
+
+
+/*config to start */
+
+@font-face{
+  font-family: "Roboto";
+  src: url('./Roboto-Regular.ttf') 
+}
+/*MaterialIcons-Regular.ttf */
+
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url('./MaterialIcons-Regular.woff2') format('woff2'),
+    url('./MaterialIcons-Regular.woff') format('woff'),
+    url('./MaterialIcons-Regular.ttf') format('truetype');
+}
+
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+:root{
+  --primary-color : #fd951f;
+  --color-body : #fbfbfb;
+  --secundary-color : rgb(0, 225, 255); 
+}
+ 
+*{
+  margin: 0; 
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+  list-style: none;
+  border: none;
+}
+
+
+
+html,body{
+  height: 100%;
+  font-family: "Roboto";
+  background: var(--color-body);
+
+}
+
+.container{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+
+/*App*/
+
+
+/* HEADER */
+header  > div , footer {
+  width: 100%;
+  text-align: center;
+  padding: 32px 0;
+  background: black;
+  color: white;
+}
+/*HEADER - CONTAINER */
+header .container {
+  display: grid;
+  grid-template-columns: 260px auto 280px;
+  align-items: center;
+}
+
+/* HEADER */
+header .container a {
+  justify-self: start;
+}
+
+
+
+/* LOGO */
+header .container h1 {
+  color: white;
+  font-size: 36px;
+  line-height: 36px;
+}
+
+
+header .container h2{
+  color: var(--primary-color);
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 2px;
+}
+
+
+/* HEADER SEARCH */
+
+.search  input {
+  width: 100%;
+  padding: 8px 16px;
+  border-radius: 2px;
+  font-size: 16px;
+}
+
