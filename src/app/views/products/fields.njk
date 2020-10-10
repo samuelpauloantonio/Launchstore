@@ -1,0 +1,37 @@
+<div class="item">
+    <div>Instructor</div>
+
+    <select name="instructor" id="select">
+        <option value="" selected disabled>Escolher Instructor</option>
+        {% for  instructor in instructorOptions%}
+        <option value="{{instructor.id}}" {% if member.instructors_id == instructor.id %} selected {% endif %}>
+            {{instructor.name}}</option>
+        {%endfor%}
+    </select>
+</div>
+
+
+<div class="item">
+    <div> Avatar URL</div>
+    <div>
+        <input type="url" name="url_avatar" placeholder="http://" value="{{member.url_avatar}} " />
+    </div>
+</div>
+
+<div class="item">
+
+    <div>Sexo</div>
+
+    <div>
+
+        <span>
+            <input type="radio" name="sex" value="M" {% if member.sex == 'M'  %} checked {% endif %}> Masculico
+        </span>
+
+        <span>
+            <input type="radio" name="sex" value="F" {% if member.sex == 'F' %} checked {% endif %}>
+            Femenina
+        </span>
+
+    </div>
+</div>

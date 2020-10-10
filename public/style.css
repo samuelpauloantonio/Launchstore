@@ -72,7 +72,8 @@ html,body{
 }
 
 .container{
-  max-width: 1200px;
+  width:90%;
+  max-width: 940px;
   margin: 0 auto;
 }
 
@@ -92,7 +93,7 @@ header  > div , footer {
 /*HEADER - CONTAINER */
 header .container {
   display: grid;
-  grid-template-columns: 260px auto 280px;
+  grid-template-columns: 260px 40% 280px;
   align-items: center;
 }
 
@@ -128,3 +129,19 @@ header .container h2{
   font-size: 16px;
 }
 
+
+nav .primary  ul{
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+nav .primary  ul li a {
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+nav .primary  ul li a i {
+  margin-right: 8px;
+}
