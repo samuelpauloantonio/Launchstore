@@ -1,6 +1,6 @@
 const express = require("express")
 const routes = express.Router()
-const ProductsController = require('./app/controllers/productsControllers')
+const productsController = require('./app/controllers/productsControllers')
 
 
 routes.get("/", function(req, res){
@@ -13,8 +13,11 @@ routes.get('/ads/create', (req, res) => {
 
 
 
-routes.get('/products/create', ProductsController.create)
+routes.get('/products/create', productsController.create)
 
+
+
+routes.post('/products', productsController.post )
 
 
 

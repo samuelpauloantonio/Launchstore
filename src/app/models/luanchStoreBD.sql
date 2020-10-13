@@ -1,3 +1,5 @@
+/* COMANDO PARA O MEU BANCO DE DADOS */
+
 CREATE TABLE "products" (
   "id" SERIAL PRIMARY KEY,
   "category_id" int UNIQUE,
@@ -7,7 +9,8 @@ CREATE TABLE "products" (
   "old_price" int,
   "price" int NOT NULL,
   "quantity" int DEFAULT 0,
-  "creat_at" timestamp DEFAULT (now()),
+  "status" int,
+  "create_at" timestamp DEFAULT (now()),
   "update_at" timestamp DEFAULT (now())
 );
 

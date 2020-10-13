@@ -48,7 +48,7 @@
 
 :root{
   --primary-color : #fd951f;
-  --color-body : #fbfbfb;
+  --color-body : #faf6f6;
   --secundary-color : rgb(0, 225, 255); 
 }
  
@@ -90,17 +90,22 @@ header  > div , footer {
   background: black;
   color: white;
 }
+
+
 /*HEADER - CONTAINER */
 header .container {
   display: grid;
-  grid-template-columns: 260px 40% 280px;
-  align-items: center;
+    grid-template-columns: 30% 40% 30%;
+    align-items: center;
+    padding: 2%;
 }
 
 /* HEADER */
+
 header .container a {
   justify-self: start;
 }
+
 
 
 
@@ -144,4 +149,105 @@ nav .primary  ul li a {
 
 nav .primary  ul li a i {
   margin-right: 8px;
+}
+
+
+
+
+
+/*FORM*/
+
+
+section.form {
+  background: white;
+  padding:32px 24px;
+  margin: 32px auto;
+  box-shadow: 2px 2px 2px -4px rgba(60,60,60, .5);
+  border: 1px solid #efeefe;
+  border-radius: 4px;
+  width: 90%;
+  max-width: 700px;
+  
+}
+
+/*header form*/
+
+section.form .header h3 {
+  font-size: 14px;
+  line-height:24px;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  margin-bottom: 14px;
+}
+
+
+form .item {
+  margin-bottom: 16px;
+
+}
+
+form .item  > div:nth-of-type(1){
+  color: #777777;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+
+form .item input[type=text],
+form .item input[type=number],
+form .item textarea,
+form .item select {
+  width: 100%;
+  padding: 8px 16px;
+  box-shadow: 2px 2px 2px -4px rgba(60,60,60, .5);
+  font-size: 16px;
+  border-radius: 4px;
+  border:1px solid #efeefe;
+ 
+}
+
+
+form .item  select {
+  background: linear-gradient(to bottom , #ffffff  0%, #e5e5e5 100%);
+}
+
+textarea{
+  min-height: 126px;
+}
+
+/*buttom  global*/
+
+
+
+
+.button{
+  background: var(--primary-color);
+  color: white;
+  width: 100%;
+  display: block;
+  margin: 16px 0;
+  border-radius: 4px;
+  font-weight:bold;
+  font-size: 16px;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  padding: 16px 0;
+
+
+  /*para colocar o botao para baixo com grid*/
+
+
+  
+  align-self: end;
+
+
+}
+
+.button:hover{
+  background-color: #bb6a0d;
 }

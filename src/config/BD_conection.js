@@ -5,6 +5,6 @@ module.exports = new Pool({
   password:51053455,
   host:"localhost",
   port:5432,
-  database:"luanchstoreDB"
+  database:"launchstoreDB"
 
 }) 

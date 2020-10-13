@@ -1,37 +1,81 @@
 <div class="item">
-    <div>Instructor</div>
+    <div>Categoria</div>
+    <select name="category_id" id="select">
+        <option selected disabled>
+        
+        Escolher Categoria
+       
+        </option>
+        {% for  category in categories %}
+        <option value ="{{category.id}}" {% if category_id == category.id %} selected {% endif %}>
+            {{category.name}}
+        </option>
 
-    <select name="instructor" id="select">
-        <option value="" selected disabled>Escolher Instructor</option>
-        {% for  instructor in instructorOptions%}
-        <option value="{{instructor.id}}" {% if member.instructors_id == instructor.id %} selected {% endif %}>
-            {{instructor.name}}</option>
         {%endfor%}
     </select>
 </div>
 
 
 <div class="item">
-    <div> Avatar URL</div>
+    <div> Nome </div>
     <div>
-        <input type="url" name="url_avatar" placeholder="http://" value="{{member.url_avatar}} " />
+        <input type="text" name="name" placeholder="Digite o Titulo do Anúncio" value="{{pruduct.name}} " />
     </div>
 </div>
 
 <div class="item">
+    <div> Descrição</div>
+    <div>
+        <textarea name="description" value="{{pruduct.description}} ">
+        </textarea>
 
-    <div>Sexo</div>
+    </div>
+</div>
+
+<div class="item">
+    <div>Valor</div>
+    <div>
+        <input type="text" 
+        name="price" 
+        placeholder="Preço do Produto"
+        value="{{product.price}}"
+        >
+
+        {%if product.old_price %}
+
+        <input type="hidden" name="old_price" value="{{old_price}}">
+
+        {%endif%}
+    </div>
+</div>
+
+
+<div class="item">
+    <div>Quantidade</div>
+    <div>
+        <input type="text" name="quantity" placeholder="Estoque Disponivel" value="{{pruduct.quantity}} " />
+    </div>
+</div>
+
+{%if product.status %}
+
+    <div class="item">
+
+    <div>Disponivel ?</div>
 
     <div>
 
         <span>
-            <input type="radio" name="sex" value="M" {% if member.sex == 'M'  %} checked {% endif %}> Masculico
+            <input type="radio" name="status" value="1" {% if product.status == '1'  %} checked {% endif %}> Sim
         </span>
 
         <span>
-            <input type="radio" name="sex" value="F" {% if member.sex == 'F' %} checked {% endif %}>
-            Femenina
+            <input type="radio" name="status" value="0" {% if product.status == '0' %} checked {% endif %}> Não
         </span>
 
     </div>
-</div>
+    </div>
+
+      
+
+ {%endif%}
