@@ -12,6 +12,12 @@ input.addEventListener('keydown', function(Event){
 
         value = value.replace(/\D/g,"")
 
+        value  = new Intl.NumberFormat('AOA', {
+            style: 'currency',
+            currency : "AOA"
+
+        }).format(value/100)
+
         Event.target.value = value
      
     }, 1)
