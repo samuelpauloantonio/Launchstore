@@ -31,6 +31,27 @@
 </div>
 
 <div class="item">
+    <div>Photo</div>
+    <div>
+        <div id="photos-uploads">
+            <input
+             type="file"
+             name="photos"
+            id="photos-input" 
+             multiple
+             accept="image/*"
+            onchange ="PhotosUpload.FilesInput(event)"
+            />
+            <p> Selecione até 6 Fotos</p>
+        </div>
+        <div id="photos-priview">
+        </div>
+    </div>
+   
+</div>
+
+<div class="item">
+
     <div>Valor</div>
     <div>
         <input type="text" 
