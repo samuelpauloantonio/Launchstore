@@ -16,12 +16,12 @@
                 {% include "products/fields.njk" %}
             </div>
 
-            <button class="button" type="submit">Enviar</button>
+            <button class="button edit"  type="submit">Actulaizar</button>
         </form>
 
         <form  id="form-delete"   action="/products?_method=DELETE" method="post" >
   
-            <button type="submit" class='button' > Deletar</button>
+            <button type="submit" class='button delete' > Deletar</button>
     
             <input type="hidden" name="id" value="{{product.id}}">
 

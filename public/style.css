@@ -218,6 +218,27 @@ textarea{
   min-height: 126px;
 }
 
+
+
+.item span {
+  display: inline-block;
+  background-color: var(--primary-color);
+  font-size: 12px !important;
+  font-weight: bold;
+  padding: 8px 16px;
+  margin-right: 4px;
+  text-transform: uppercase;
+  border-radius: 16px;
+  margin-top: 8px;
+  letter-spacing: 0.8px;
+  color:white !important;
+  border-top-left-radius: 0px;
+}
+
+input[type=radio]{
+  cursor: pointer;
+}
+
 /*buttom  global*/
 
 
@@ -250,4 +271,24 @@ textarea{
 
 .button:hover{
   background-color: #bb6a0d;
+}
+
+form .edit {
+  background-color: rgb(44, 73, 236);
+  transition: all 100ms ease-in;
+}
+
+form  .edit:hover{
+  background-color: rgb(4, 13, 65);
+}
+
+form .delete {
+  background-color: grey;
+  transition: all 100ms ease-in;
+
+}
+
+form .delete:hover{
+  background-color: rgb(228, 23, 23);
+
 }

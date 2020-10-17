@@ -42,5 +42,43 @@ module.exports = {
 
       find(id){
         return bancodeDados.query(`SELECT * FROM products WHERE id  = $1`, [id])
+      },
+
+      update(dados){
+
+        const query = `
+          UPDATE products SET 
+
+            category_id = ($1),
+            user_id  = ($2),
+            name  = ($3),
+            description   = ($4) ,
+            old_price  = ($5),
+            price  = ($6),
+            quantity  = ($7),
+            status  = ($8)
+          WHERE id = $9
+        `
+        
+        const values = [
+          dados.category_id,
+          dados.user_id,
+          dados.name,
+          dados.description,
+          dados.old_price,
+          dados.price,
+          dados.quantity,
+          dados.status,
+          dados.id
+        
+        ] 
+    
+         return bancodeDados.query(query, values)
+
+      },
+
+
+      delete(id){
+        return bancodeDados.query(`DELETE FROM products WHERE id = $1`, [id])
       }
 }
