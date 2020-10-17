@@ -22,20 +22,25 @@ module.exports = {
           ) VALUES($1, $2, $3, $4, $5, $6, $7, $8)
           RETURNING id
         `
-    
+        
+         dados.price = dados.price.replace(/\D/g,"")
     
         const values = [
           dados.category_id,
-          2,
+          dados.user_id || 1,
           dados.name,
           dados.description,
-          dados.old_price,
+          dados.old_price || dados.price,
           dados.price,
           dados.quantity,
-          dados.status
+          dados.status || 1
         
-        ]
+        ] 
     
          return bancodeDados.query(query, values)
+      },
+
+      find(id){
+        return bancodeDados.query(`SELECT * FROM products WHERE id  = $1`, [id])
       }
 }

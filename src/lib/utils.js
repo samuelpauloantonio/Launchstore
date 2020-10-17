@@ -19,6 +19,13 @@ module.exports = {
     format: `${day}/${Month}/${year}`
    }
    
+  },
+
+  formtPrice(price){
+    return new Intl.NumberFormat("AOA", {
+      style: "currency",
+      currency: "AKZ",
+  }).format(price / 100);
   }
   
 

@@ -1,0 +1,34 @@
+{% extends "layout.njk" %}
+
+    {%block content %}
+
+    <section class="container form ">
+
+        <form method="POST" action="/products?_method=PUT" >
+
+            <div class= "header">
+                <h3> Editar Produtos {{productID}} </h3>
+                 <input type="hidden" name="id" value= '{{product.id}}'>
+            </div>
+
+
+            <div class="fields">
+                {% include "products/fields.njk" %}
+            </div>
+
+            <button class="button" type="submit">Enviar</button>
+        </form>
+
+        <form  id="form-delete"   action="/products?_method=DELETE" method="post" >
+  
+            <button type="submit" class='button' > Deletar</button>
+    
+            <input type="hidden" name="id" value="{{product.id}}">
+
+        </form>
+        
+    </section>
+
+
+    {% endblock %}
+

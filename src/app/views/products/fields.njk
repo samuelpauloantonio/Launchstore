@@ -7,7 +7,7 @@
        
         </option>
         {% for  category in categories %}
-        <option value ="{{category.id}}" {% if category_id == category.id %} selected {% endif %}>
+        <option value ="{{category.id}}" {% if product.category_id == category.id %} selected {% endif %}>
             {{category.name}}
         </option>
 
@@ -19,16 +19,14 @@
 <div class="item">
     <div> Nome </div>
     <div>
-        <input type="text" name="name" placeholder="Digite o Titulo do Anúncio" value="{{pruduct.name}} " />
+        <input type="text" name="name" placeholder="Digite o Titulo do Anúncio" value = "{{product.name}} " />
     </div>
 </div>
 
 <div class="item">
     <div> Descrição</div>
     <div>
-        <textarea name="description" value="{{pruduct.description}} ">
-        </textarea>
-
+        <textarea name="description"  > {{product.description}} </textarea>
     </div>
 </div>
 
@@ -39,6 +37,7 @@
         name="price" 
         placeholder="Preço do Produto"
         value="{{product.price}}"
+        onkeydown = "Mask.apply(this, 'formtAOA')"
         >
 
         {%if product.old_price %}
@@ -53,7 +52,7 @@
 <div class="item">
     <div>Quantidade</div>
     <div>
-        <input type="text" name="quantity" placeholder="Estoque Disponivel" value="{{pruduct.quantity}} " />
+        <input type="text" name="quantity" placeholder="Estoque Disponivel" value="{{prduct.quantity}}" />
     </div>
 </div>
 

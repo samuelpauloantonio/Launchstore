@@ -9,7 +9,7 @@ CREATE TABLE "products" (
   "old_price" int,
   "price" int NOT NULL,
   "quantity" int DEFAULT 0,
-  "status" int,
+  "status" int DEFAULT 1,
   "create_at" timestamp DEFAULT (now()),
   "update_at" timestamp DEFAULT (now())
 );

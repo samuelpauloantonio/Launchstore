@@ -14,10 +14,11 @@ routes.get('/ads/create', (req, res) => {
 
 
 routes.get('/products/create', productsController.create)
-
+routes.get('/products/:id/edit', productsController.edit )
 
 
 routes.post('/products', productsController.post )
+
 
 
 

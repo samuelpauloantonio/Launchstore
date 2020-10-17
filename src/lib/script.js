@@ -1,28 +1,36 @@
 
 
-const input = document.querySelector('input[name=price]')
 
-input.addEventListener('keydown', function(Event){
-    
+const Mask = {
+    apply(input, func) {
+        setTimeout(function () {
+            input.value = Mask[func](input.value);
+        }, 1);
+    },
 
+    formtAOA(value) {
+        value = value.replace(/\D/g, "");
 
-
-    setTimeout(function(){
-        let {value} = Event.target
-
-        value = value.replace(/\D/g,"")
-
-        value  = new Intl.NumberFormat('AOA', {
-            style: 'currency',
-            currency : "AOA"
-
-        }).format(value/100)
-
-        Event.target.value = value
-     
-    }, 1)
+        return new Intl.NumberFormat("AOA", {
+            style: "currency",
+            currency: "AKZ",
+        }).format(value / 100);
+    },
+};
 
 
 
-  
-})
+function DeleteUser(){
+
+let  formDelet  = document.querySelector('#form-delete')
+ 
+     formDelet.addEventListener('submit', function(event){
+         const confirmDelete  = confirm('do you like delete this user ?')
+ 
+         if(!confirmDelete){
+             event.preventDefault()
+         }
+     })
+ }
+ DeleteUser()
+ 
