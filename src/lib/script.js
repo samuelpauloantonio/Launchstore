@@ -17,7 +17,6 @@ function locations(edit) {
 }
 locations("edit");
 
-
 const Mask = {
   apply(input, func) {
     setTimeout(function () {
@@ -35,87 +34,120 @@ const Mask = {
   },
 };
 
-
+//upload Photos
+//gerenciador de Photos
 
 const PhotosUpload = {
-
-  priview :  document.querySelector('#photos-priview'),
-
+  priview: document.querySelector("#photos-priview"),
+  files: [],
   uploadLimit: 6,
+  input: "",
 
   FilesInput(event) {
-    
     const { files: fileList } = event.target;
-  
-    if(PhotosUpload.hasLimit(event)) return 
-   
-    Array.from(fileList).forEach((file) =>{
-        
-        const  reader = new FileReader()
+    PhotosUpload.input = event.target;
 
-        reader.onload = () => {
-            const  image = new Image()
+    if (PhotosUpload.hasLimit(event)) return;
 
-            image.src = String(reader.result) 
+    Array.from(fileList).forEach((file) => {
+      const reader = new FileReader();
 
-           const div = PhotosUpload.getConteiner(image)
+      PhotosUpload.files.push(file);
 
-           PhotosUpload.priview.appendChild(div)
-            
-        }
+      reader.onload = () => {
+        const image = new Image();
 
-        reader.readAsDataURL(file)
-    })
+        image.src = String(reader.result);
+
+        const div = PhotosUpload.getConteiner(image);
+
+        PhotosUpload.priview.appendChild(div);
+      };
+
+      reader.readAsDataURL(file);
+    });
+
+    PhotosUpload.input.files = PhotosUpload.getAllFiles();
   },
 
-  hasLimit(event){
 
-    const {files : fileList } = event.target
-    const { uploadLimit } = PhotosUpload;
+  //colocar limite de Uploud de Photos
+  hasLimit(event) {
+    const { uploadLimit, input, priview } = PhotosUpload;
+    const { files: fileList } = input;
 
     if (fileList.length > uploadLimit) {
-      alert(`Envie no máximo ${uploadLimit } fotos` ); 
-
+      alert(`Envie no máximo ${uploadLimit} fotos`);
       event.preventDefault();
 
-      return true ;
+      return true;
     }
 
-    return false
-  },
-  
-  getConteiner(image){
-    const  div = document.createElement('div')
-    div.classList.add('photo')
+    const photoDiv = [];
 
-    div.onclick = PhotosUpload.removePhotos
+    priview.childNodes.forEach((item) => {
+      if (item.classList && item.classList.value == "photo")
+        photoDiv.push(item);
+    });
 
-    div.appendChild(image)
+    const totalPhotos = fileList.length + photoDiv.length;
 
-    div.appendChild(PhotosUpload.getRemoveButton())
+    if (totalPhotos > uploadLimit) {
+      alert("Você atingiu o limite máximo de fotos");
+      event.preventDefault();
+      return true;
+    }
 
-    return div
-  },
-
-  getRemoveButton(){
-
-    const  button = document.createElement('i')
-    button.classList.add('material-icons')
-    
-    button.innerHTML = "close"
-
-    return button
-    
+    return false;
   },
 
-  removePhotos(event){
-    const photoDiv  = event.target.parentNode
-    const photosArray  = Array.from(PhotosUpload.priview.children)
-    const index = photosArray.indexOf(photoDiv)
 
-    console.log(photosArray)
+  //Pega Todos as Photos carregadas apartir do DataTransfer do Google Chrome
+  getAllFiles() {
+    const dataTransfer =
+      new ClipboardEvent("").clipboardData || new DataTransfer();
+
+    PhotosUpload.files.forEach((file) => dataTransfer.items.add(file));
+
+    return dataTransfer.files;
+  },
+
+
+  //Coloca a Photo na div
+  getConteiner(image) {
+    const div = document.createElement("div");
+    div.classList.add("photo");
+
+    div.onclick = PhotosUpload.removePhotos;
+
+    div.appendChild(image);
+
+    div.appendChild(PhotosUpload.getRemoveButton());
+
+    return div;
+  },
+
+
+  //Cria o Button de Remover as Photos com Material Icon
+  getRemoveButton() {
+    const button = document.createElement("i");
+    button.classList.add("material-icons");
+
+    button.innerHTML = "close";
+
+    return button;
+  },
+
+
+  //Evento de Remover Photos do Array ou do nosso Priview
+  removePhotos(event) {
+    const photoDiv = event.target.parentNode;
+    const photosArray = Array.from(PhotosUpload.priview.children);
+    const index = photosArray.indexOf(photoDiv);
+
+    PhotosUpload.files.splice(index, 1);
+    PhotosUpload.input.files = PhotosUpload.getAllFiles();
 
     photoDiv.remove();
-  }
+  },
 };
-
