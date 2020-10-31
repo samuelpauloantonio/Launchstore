@@ -1,5 +1,5 @@
 const bancodeDados = require('../../config/BD_conection')
-
+const fs  = require('fs')
 
 module.exports = {
 
@@ -80,5 +80,12 @@ module.exports = {
 
       delete(id){
         return bancodeDados.query(`DELETE FROM products WHERE id = $1`, [id])
-      }
+      },
+
+      files(id){
+        return bancodeDados.query(`
+          SELECT * FROM files WHERE product_id = $1`,[id])
+      },
+
+    
 }

@@ -1,7 +1,9 @@
 //Funcao Alert Delete
 
+
 function locations(edit) {
   const currentpage = document.location.pathname;
+
 
   if (currentpage.includes(edit)) {
     let formDelet = document.querySelector("#form-delete");
@@ -150,4 +152,20 @@ const PhotosUpload = {
 
     photoDiv.remove();
   },
+
+  removeOldPhoto(event){
+  
+    const photoDiv = event.target.parentNode
+
+    if(photoDiv.id){
+      const removeFiles = document.querySelector('input[name="removed_files"]')
+
+      if(removeFiles){
+        
+        removeFiles.value  +=`${photoDiv.id},`
+      }
+    }
+
+    photoDiv.remove()
+  }
 };
