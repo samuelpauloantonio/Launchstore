@@ -16,6 +16,7 @@ routes.get('/ads/create', (req, res) => {
 
 
 routes.get('/products/create', productsController.create)
+routes.get('/products/:id', productsController.show)
 routes.get('/products/:id/edit', productsController.edit )
 
 routes.post('/products', multer.array('photos', 6), productsController.post )

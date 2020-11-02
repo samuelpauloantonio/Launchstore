@@ -49,7 +49,7 @@
 :root{
   --primary-color : #fd951f;
   --color-body : #faf6f6;
-  --secundary-color : rgb(0, 225, 255); 
+  --secundary-color : rgb(19, 73, 221); 
 }
  
 *{
@@ -71,12 +71,22 @@ html,body{
 
 }
 
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
 .container{
   width:90%;
   max-width: 940px;
   margin: 0 auto;
 }
 
+footer{
+  margin-top: auto;
+}
 
 
 /*App*/
@@ -89,6 +99,7 @@ header  > div , footer {
   padding: 32px 0;
   background: black;
   color: white;
+  
 }
 
 
@@ -98,6 +109,7 @@ header .container {
     grid-template-columns: 30% 40% 30%;
     align-items: center;
     padding: 2%;
+    
 }
 
 /* HEADER */
@@ -384,4 +396,91 @@ form .item  #photos-priview  .photo > i {
 
 form .item  #photos-priview .photo:hover i {
   opacity: 1;
+}
+
+
+/*PRODUCT PRIVIEW*/
+
+.product-single{
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 24px;
+  background: white;
+  
+  padding: 32px 24px;
+  margin: 32px auto;
+  
+  box-shadow: 2px 2px 2px -4px rgba(63,63,62, .9);
+
+  border: 1px solid #efefef;
+  border-radius: 4px;
+  height: 80%;
+
+}
+
+.product-single .gallery{
+  width: 100%;
+}
+
+.gallery img {
+  width: 100%;
+}
+
+.product-single .info{
+  display: grid;
+  grid-template-rows:auto 40px 2fr 1fr;
+}
+
+.product-single .info h1{
+  font-size: 32px;
+  line-height: 42px;
+  color: #333;
+  text-transform: uppercase;
+}
+
+.product-single  .published {
+  color : #888;
+  font-size: 12px;
+  line-height: 22px;
+  letter-spacing: 0.4px;
+}
+
+/*PRICE BUY*/
+.product-single .price-buy{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-top: 8px;
+  border-top: 1px solid #eee;
+}
+
+.product-single .price-buy .price{
+  width: 60%;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-weight: bold;
+
+}
+
+.product-single .price-buy .price .old_price{
+  text-decoration: line-through;
+  color: #999;
+  font-size: 14px;
+  font-weight: normal;
+  margin-left: 8px;
+
+}
+.product-single .price-buy .buy{
+  width: 40%;
+}
+.product-single .price-buy .buy >  .button{
+  font-size: 14px;
+  background-color: var(--secundary-color);
+  letter-spacing: 0.4px;
+  cursor: pointer;
 }

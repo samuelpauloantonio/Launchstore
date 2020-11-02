@@ -54,7 +54,6 @@ module.exports = {
 
 
 
-
   async edit(req, res) {
    
 
@@ -97,7 +96,16 @@ module.exports = {
   },
 
 
+async show(req,res){
 
+  let results = await Product.find(req.params.id)
+
+  const product = results.rows[0]
+
+  if(!product) return res.send('product not-found')
+
+  return res.render('products/show')
+},
 
   async put(req, res){
 
