@@ -1,38 +1,65 @@
 {% extends "layout.njk"%}
 
 {% block content %}
-    
-    <section class="product-single container">
 
-        <div class="gallery">
-            <img 
-            src="/Rectangle.png" alt="" />
+<section class="product-single container">
+
+    <div class="gallery">
+        <div class="highlight">
+            {%if not files[0] %}
+            <img src="{{files[0].src}}" alt="{{files[0].name}}">
+
+            {% else %}
+            <img src="{{files[0].src}}" alt="{{files[0].name}}">
+            {% endif %}
         </div>
 
-        <div class="info">
-            <h1>Impanado de Pizza</h1>
+        <div class="gallery-preview">
+            {%for image in files %}
+            <img src="{{image.src}}" 
+            alt="{{image.name}}"
+             {%if loop.index0 == 0 %}
+                 class="active"
+              {% endif %}>
+            <!--menu active if loop.index0 do nunjucks -->
+            {% endfor %}
+        </div>
+    </div>
 
-            <div class="published">
-                Plublicado em 18/12 às 21h
+    <div class="info">
+        <h1>{{product.name}}</h1>
+
+        <div class="published">
+            Plublicado em {{product.published.day}} às {{product.published.hour}}
+        </div>
+
+        <div class="description">
+            {{product.description}}
+        </div>
+
+        <div class="price-buy">
+            <div class="price">
+                {{product.price}}
+
+                {% if  product.price !== product.old_price %}
+                <span class="old_price"> AKZ 89 </span>
+
+                {% endif %}
             </div>
 
-            <div class="description">
-                jfddfdhjklhklhkldshfksdkls jhsh
-            </div>
+            <div class="buy">
+                {% if product.status == 0 %}
+                <p class="unavailable">Indisponivel</p>
+                {% elseif product.quantity == 0 %}
+                <p class="unavailable">Fora de Estoque</p>
+                {% else %}
+                <button class="button">Comprar</button>
 
-            <div class="price-buy">
-                <div class="price">
-                    AKZ 100,00
-
-                    <span class="old_price"> AKZ 89 </span>
-                </div>
-
-                <div class="buy">
-                    <button class="button">Comprar</button>
-                </div>
+                {% endif %}
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 
 

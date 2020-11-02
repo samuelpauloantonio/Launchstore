@@ -1,6 +1,6 @@
 const category = require("../models/category");
 const Product = require("../models/product");
-const  { formtPrice } = require('../../lib/utils');
+const  { formtPrice , date } = require('../../lib/utils');
 const File = require('../models/File')
 
 module.exports = {
@@ -101,11 +101,35 @@ async show(req,res){
   let results = await Product.find(req.params.id)
 
   const product = results.rows[0]
+  console.log(product)
 
-  if(!product) return res.send('product not-found')
+  if(!product) return res.send('Product Not-found')
+  
 
-  return res.render('products/show')
+
+  const {day, hour, minutes, month ,year } = date(product.updated_at)
+
+
+  product.published = {
+    day : `${day}/${month}/${year}`,
+    hour : `${hour}h:${minutes}`,
+  }
+
+  product.old_price = formtPrice(product.old_price)
+  product.price = formtPrice(product.price)
+
+
+  results = await Product.files(product.id)
+
+  const files = results.rows.map(file => ({
+    ...file,
+    src : `${req.protocol}://${req.headers.host}${file.path.replace("public","")}`
+  }) )
+  
+
+  return res.render('products/show', { product, files})
 },
+
 
   async put(req, res){
 
