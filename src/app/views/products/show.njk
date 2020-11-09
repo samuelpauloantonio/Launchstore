@@ -5,14 +5,31 @@
 <section class="product-single container">
 
     <div class="gallery">
+
         <div class="highlight">
             {%if not files[0] %}
-            <img src="{{files[0].src}}" alt="{{files[0].name}}">
+            <img src="{{files[0].src}}" 
+            alt="{{files[0].name}}"
+            >
 
             {% else %}
-            <img src="{{files[0].src}}" alt="{{files[0].name}}">
+            <img src="{{files[0].src}}"
+             alt="{{files[0].name}}"
+             onclick = "animationZoomImage.open()"
+             >
             {% endif %}
-        </div>
+
+            <div class="lightbox-target">
+                <div class="modal-center">
+                    <img src="{{files[0].src}}" alt="{{files[0].name}}">
+                 <a href="#" class="lightboxClose"
+                onclick = "animationZoomImage.close()"
+                 >
+                    <i class="material-icons">close</i>
+                </a>
+                </div>
+            </div><!--lightbox-target-->
+        </div><!--highlight-->
 
         <div class="gallery-preview">
             {%for image in files %}
@@ -20,7 +37,9 @@
             alt="{{image.name}}"
              {%if loop.index0 == 0 %}
                  class="active"
-              {% endif %}>
+              {% endif %}
+              onclick = "imageGallery.setImage(event)"
+              >
             <!--menu active if loop.index0 do nunjucks -->
             {% endfor %}
         </div>

@@ -46,7 +46,9 @@ const PhotosUpload = {
   input: "",
 
   FilesInput(event) {
-    const { files: fileList } = event.target;
+    const {
+      files: fileList
+    } = event.target;
     PhotosUpload.input = event.target;
 
     if (PhotosUpload.hasLimit(event)) return;
@@ -75,8 +77,14 @@ const PhotosUpload = {
 
   //colocar limite de Uploud de Photos
   hasLimit(event) {
-    const { uploadLimit, input, priview } = PhotosUpload;
-    const { files: fileList } = input;
+    const {
+      uploadLimit,
+      input,
+      priview
+    } = PhotosUpload;
+    const {
+      files: fileList
+    } = input;
 
     if (fileList.length > uploadLimit) {
       alert(`Envie no máximo ${uploadLimit} fotos`);
@@ -153,19 +161,74 @@ const PhotosUpload = {
     photoDiv.remove();
   },
 
-  removeOldPhoto(event){
-  
+  removeOldPhoto(event) {
+
     const photoDiv = event.target.parentNode
 
-    if(photoDiv.id){
+    if (photoDiv.id) {
       const removeFiles = document.querySelector('input[name="removed_files"]')
 
-      if(removeFiles){
-        
-        removeFiles.value  +=`${photoDiv.id},`
+      if (removeFiles) {
+
+        removeFiles.value += `${photoDiv.id},`
       }
     }
 
     photoDiv.remove()
-  }
+  },
+
 };
+
+
+const imageGallery = {
+
+  preview: document.querySelectorAll('.gallery-preview  > img'),
+
+  highlight: document.querySelector('.highlight > img'),
+
+  setImage(event) {
+    const {
+      target
+    } = event
+    imageGallery.preview.forEach(priview => priview.classList.remove('active'))
+
+    target.classList.add('active')
+
+    imageGallery.highlight.src = target.src
+    animationZoomImage.image.src = target.src
+
+
+
+  }
+
+}
+
+
+const animationZoomImage = {
+
+  target: document.querySelector('.lightbox-target'),
+  image: document.querySelector('.lightbox-target  img'),
+  closeButton: document.querySelector('.lightboxClose'),
+
+
+
+  open() {
+
+    animationZoomImage.target.style.opacity = 1
+    animationZoomImage.target.style.top = 0
+    animationZoomImage.target.style.visibility = "visible"
+    animationZoomImage.closeButton.style.top = "-10px"
+    animationZoomImage.closeButton.style.transition = "all ease-in 200ms";
+
+  },
+  close() {
+
+    animationZoomImage.target.style.opacity = 0
+    animationZoomImage.target.style.top = -"-100%"
+    animationZoomImage.target.style.visibility = "hidden"
+
+    animationZoomImage.closeButton.style.top = "-200px"
+    animationZoomImage.closeButton.style.transition = "none";
+
+  }
+}

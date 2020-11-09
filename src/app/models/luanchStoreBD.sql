@@ -29,3 +29,27 @@ CREATE TABLE "files" (
 ALTER TABLE "products" ADD FOREIGN KEY ("category_id") REFERENCES "category" ("id");
 
 ALTER TABLE "files" ADD FOREIGN KEY ("product_id") REFERENCES "products" ("id");
+
+
+/*FUNCTION PROCEDURE E TRIGGERS*/
+
+
+create function setTimes() 
+  returns triggers As $$
+begin 
+
+NEW.update_at = now();
+
+return new;
+
+end;
+
+language plpsql 
+
+
+create trigger set_timestamp
+before update on products
+
+FOR EACH Row 
+
+EXECUTE PROCEDURE setTimes();
