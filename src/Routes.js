@@ -1,13 +1,12 @@
 const express = require("express")
+const HomeControllers = require("./app/controllers/HomeControllers")
 const routes = express.Router()
 const productsController = require('./app/controllers/productsControllers')
 const multer = require('./app/middlewares/multer')
 
 
 
-routes.get("/", function(req, res){
-  return res.render('layout.njk')
-})
+routes.get("/", HomeControllers.index)
 
 routes.get('/ads/create', (req, res) => {
   return res.redirect('/produts/create')

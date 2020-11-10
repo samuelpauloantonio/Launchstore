@@ -1,6 +1,6 @@
 const category = require("../models/category");
 const Product = require("../models/product");
-const  { formtPrice , date } = require('../../lib/utils');
+const  { formatPrice , date } = require('../../lib/utils');
 const File = require('../models/File')
 
 module.exports = {
@@ -65,8 +65,8 @@ module.exports = {
 
 
     //Formatando Price
-    product.price = formtPrice(product.price)
-    product.old_price = formtPrice(product.old_price)
+    product.price = formatPrice(product.price)
+    product.old_price = formatPrice(product.old_price)
 
 
 
@@ -115,9 +115,8 @@ async show(req,res){
     hour : `${hour}h:${minutes}`,
   }
 
-  product.old_price = formtPrice(product.old_price)
-  product.price = formtPrice(product.price)
-
+  product.old_price = formatPrice(product.old_price)
+  product.price = formatPrice(product.price)
 
   results = await Product.files(product.id)
 

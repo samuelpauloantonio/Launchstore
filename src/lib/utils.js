@@ -24,7 +24,7 @@ module.exports = {
    
   },
 
-  formtPrice(price){
+  formatPrice(price){
     return new Intl.NumberFormat("AOA", {
       style: "currency",
       currency: "AKZ",

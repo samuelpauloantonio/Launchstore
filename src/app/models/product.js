@@ -3,7 +3,12 @@ const fs  = require('fs')
 
 module.exports = {
 
-    
+      all(){
+        return  bancodeDados.query(`
+          SELECT * FROM products 
+          ORDER BY updated_at DESC
+        `)
+      },
     create(dados) {
 
         const query = `
