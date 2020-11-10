@@ -160,16 +160,15 @@ module.exports = {
           case 2:
             results = _context3.sent;
             product = results.rows[0];
-            console.log(product);
 
             if (product) {
-              _context3.next = 7;
+              _context3.next = 6;
               break;
             }
 
             return _context3.abrupt("return", res.send('Product Not-found'));
 
-          case 7:
+          case 6:
             _date = date(product.updated_at), day = _date.day, hour = _date.hour, minutes = _date.minutes, month = _date.month, year = _date.year;
             product.published = {
               day: "".concat(day, "/").concat(month, "/").concat(year),
@@ -177,10 +176,10 @@ module.exports = {
             };
             product.old_price = formatPrice(product.old_price);
             product.price = formatPrice(product.price);
-            _context3.next = 13;
+            _context3.next = 12;
             return regeneratorRuntime.awrap(Product.files(product.id));
 
-          case 13:
+          case 12:
             results = _context3.sent;
             files = results.rows.map(function (file) {
               return _objectSpread({}, file, {
@@ -192,7 +191,7 @@ module.exports = {
               files: files
             }));
 
-          case 16:
+          case 15:
           case "end":
             return _context3.stop();
         }

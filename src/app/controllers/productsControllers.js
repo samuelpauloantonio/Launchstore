@@ -101,7 +101,6 @@ async show(req,res){
   let results = await Product.find(req.params.id)
 
   const product = results.rows[0]
-  console.log(product)
 
   if(!product) return res.send('Product Not-found')
   

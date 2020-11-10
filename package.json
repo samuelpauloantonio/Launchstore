@@ -6,7 +6,7 @@
     "debug": "nodemon --inspect=0.0.0.0:9229 src/server.js",
     "start": "npm-run-all -p nodemon browsersync",
     "nodemon": "nodemon src/server.js",
-    "browsersync": "browser-sync start --proxy localhost:3002  --files 'public,src'"
+    "browsersync": "browser-sync start --proxy localhost:2014  --files 'public,src'"
   },
   "dependencies": {
     "express": "^4.17.1",

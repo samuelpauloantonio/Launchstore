@@ -31,6 +31,6 @@ server.use(routes)
 
 
 
-server.listen(3002, function(){
+server.listen(2014, function(){
   console.log("servidor is running")
 })
