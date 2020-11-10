@@ -12,7 +12,7 @@ module.exports  = {
        if(!products) res.send("Product Not-found !")
 
        async function getImage(productID){
-           let results = await Product.files(productID)
+           let results =  await Product.files(productID)
 
            const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
 

@@ -9,8 +9,9 @@
         {% for product in products %}
         <div class="product">
             <div class="image"
-                style="background:url({{product.img if product.img else '//placehold.it/500x500?text=Produto sem image'}})">
+                style="background-image:url({{product.img if product.img else '//placehold.it/500x500'}})">
                 
+            </div>
         
                 {% if product.oldPrice != product.price %} 
                     <div class="old-price" >
@@ -22,8 +23,7 @@
                 <p>{{product.price}}</p>
                 <h4>{{product.name}}</h4>
 
-                <a href="/products/{{product.id}}" class="buttom"> Ver o Produto</a>
-            </div>
+                <a href="/products/{{product.id}}" class="button"> Ver o Produto</a>
         </div>
         {% endfor %}
     </div>

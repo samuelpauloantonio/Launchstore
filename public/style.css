@@ -591,3 +591,24 @@ form .item  #photos-priview .photo:hover i {
 
 }
 
+.shop h2{
+  margin: 48px;
+}
+
+.shop .item{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 32px;
+}
+
+.shop .item .product {
+  display: grid;
+}
+
+.shop .item .product .image {
+  padding-top: 56.25%;
+
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
