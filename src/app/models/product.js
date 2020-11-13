@@ -9,6 +9,19 @@ module.exports = {
           ORDER BY updated_at DESC
         `)
       },
+
+    filterBy(filter){
+     try {
+      return bancodeDados.query(`
+      SELECT products.*
+      FROM products 
+      WHERE products.name ILIKE '%${filter}%'
+      ORDER BY name ASC
+    `)
+     } catch (error) {
+       console.error(error)
+     }
+    },
     create(dados) {
 
         const query = `

@@ -9,14 +9,14 @@
 
       </a>
 
-      <form class="search" action="/product/search" method="get">
+      <form class="search" action="/products/search" method="get">
         <input 
           type="text" 
           name="filter"
           placeholdfer = "buscar por Produtos"
 
-          {%if search.term %}
-            value = {{search.term}}
+          {%if filter %}
+            value = {{filter}}
           {%endif%}
          >
       </form>
