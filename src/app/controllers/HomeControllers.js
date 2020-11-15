@@ -5,36 +5,7 @@ const  { formatPrice} = require('../../lib/utils');
 module.exports  = {
     
    async index(req, res){
-        const {filter} = req.query
-
-        if(filter){
-          let results =   await Product.filterBy(filter)
-            
-            const products = results.rows
-     
-     
-            async function getImage(productID){
-                let results =  await Product.files(productID)
-     
-                const files = results.rows.map(file =>  `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
-                
-                return  files[0]
-            }
-     
-            const productPromise = products.map( async product =>{
-                product.img = await getImage(product.id)
-                product.oldPrice  = formatPrice(product.old_price)
-                product.price  = formatPrice(product.price)
-     
-                return product
-            })
-     
-            const lastAdd = await Promise.all(productPromise)
-             return res.render('home/index', { products : lastAdd, filter})
-     
-         
-        }else{
-
+        
             let results = await Product.all()
             const products = results.rows
      
@@ -60,7 +31,7 @@ module.exports  = {
             const lastAdd = await Promise.all(productPromise)
              return res.render('home/index', { products : lastAdd})
 
-        }
+        
 
       
 

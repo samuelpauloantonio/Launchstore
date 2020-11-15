@@ -636,3 +636,50 @@ form .item  #photos-priview .photo:hover i {
   text-decoration: line-through;
   font-size: 14px;
 }
+
+
+/*Style do pagina search */
+
+
+.search-products {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+
+  margin-top: 48px;
+}
+
+.search-products .header{
+  margin-top: 48px;
+  color: #333;
+  font-size: 14px;
+}
+
+.search-products .header h2{
+  font-size: 26px;
+  padding: 8px 0;
+  text-transform: capitalize;
+}
+
+
+
+.search-products nav {
+  margin-top: 55px;
+}
+.search-products nav h4{
+  margin-bottom: 16px;
+  color: #333;
+  font-size: 14px;
+  text-transform:uppercase;
+  letter-spacing:2px;
+}
+
+.search-products nav  ul li{
+  margin-top: 4px;
+}
+.search-products nav  ul li a{
+  color: #777;
+}
+.search-products nav  ul li a:hover{
+  color: black;
+  font-weight: bold;
+}

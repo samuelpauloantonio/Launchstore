@@ -11,7 +11,6 @@ const product = require("./app/models/product")
 routes.get("/", HomeControllers.index)
 
 //Search 
-routes.get('/products/search', HomeControllers.index )
 routes.get('/products/search', searchController.index)
 
 routes.get('/ads/create', (req, res) => {

@@ -7,19 +7,20 @@ var _require = require('../../lib/utils'),
 
 module.exports = {
   index: function index(req, res) {
-    var results, products, getImage, productPromise, lastAdd;
+    var results, params, _req$query, filter, category, getImage, productPromise, products, search, categories;
+
     return regeneratorRuntime.async(function index$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            getImage = function _ref(productID) {
+            getImage = function _ref(product_id) {
               var results, files;
               return regeneratorRuntime.async(function getImage$(_context) {
                 while (1) {
                   switch (_context.prev = _context.next) {
                     case 0:
                       _context.next = 2;
-                      return regeneratorRuntime.awrap(Product.files(productID));
+                      return regeneratorRuntime.awrap(Product.files(product_id));
 
                     case 2:
                       results = _context.sent;
@@ -36,14 +37,29 @@ module.exports = {
               });
             };
 
-            _context3.next = 3;
-            return regeneratorRuntime.awrap(Product.all());
+            params = {};
+            _req$query = req.query, filter = _req$query.filter, category = _req$query.category;
 
-          case 3:
+            if (filter) {
+              _context3.next = 5;
+              break;
+            }
+
+            return _context3.abrupt("return", res.redirect('/'));
+
+          case 5:
+            params.filter = filter;
+
+            if (category) {
+              params.category = category;
+            }
+
+            _context3.next = 9;
+            return regeneratorRuntime.awrap(Product.search(params));
+
+          case 9:
             results = _context3.sent;
-            products = results.rows;
-            if (!products) res.send("Product Not-found !");
-            productPromise = products.map(function _callee(product) {
+            productPromise = results.rows.map(function _callee(product) {
               return regeneratorRuntime.async(function _callee$(_context2) {
                 while (1) {
                   switch (_context2.prev = _context2.next) {
@@ -63,19 +79,35 @@ module.exports = {
                   }
                 }
               });
-            }).filter(function (product, index) {
-              return index > 2 ? false : true;
             });
-            _context3.next = 9;
+            _context3.next = 13;
             return regeneratorRuntime.awrap(Promise.all(productPromise));
 
-          case 9:
-            lastAdd = _context3.sent;
+          case 13:
+            products = _context3.sent;
+            search = {
+              term: req.query.filter,
+              total: products.length
+            };
+            categories = products.map(function (product) {
+              return {
+                id: product.category_id,
+                name: product.category_name
+              };
+            }).reduce(function (categoryFiltered, category) {
+              var found = categoryFiltered.some(function (cat) {
+                return cat.id == category.id;
+              });
+              if (!found) categoryFiltered.push(category);
+              return categoryFiltered;
+            }, []);
             return _context3.abrupt("return", res.render('search/index', {
-              products: lastAdd
+              products: products,
+              search: search,
+              categories: categories
             }));
 
-          case 11:
+          case 17:
           case "end":
             return _context3.stop();
         }

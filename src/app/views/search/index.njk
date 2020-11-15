@@ -8,19 +8,19 @@
 
     <aside>
         <div class="header">
-            <h2>Computador</h2>
-            <p>12 Computador</p>
+            <h2>{{search.term}}</h2>
+            <p>{{search.total}} encontrados</p>
         </div>
          
          <nav>
             <h4>Categorias</h4>
-                 <li>
-                    <a href="#"> Eletrônicos </a>
-                 </li>
-                 <li>
-                    <a href="#"> Comida</a>
-                 </li>
+                 
             <ul>
+                 {% for category in categories %}
+                    <li>
+                     <a href="/products/search?filter={{search.term}}&category={{category.id}}">{{category.name}}</a>
+                  </li>
+                 {% endfor %}
             </ul>
          </nav>
     </aside>

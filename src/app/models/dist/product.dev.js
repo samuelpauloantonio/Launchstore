@@ -34,5 +34,19 @@ module.exports = {
   },
   files: function files(id) {
     return bancodeDados.query("\n          SELECT * FROM files WHERE product_id = $1", [id]);
+  },
+  search: function search(params) {
+    var filter = params.filter,
+        category = params.category;
+    var query = "",
+        filterQuery = "WHERE";
+
+    if (category) {
+      filterQuery = "".concat(filterQuery, "\n              products.category_id = ").concat(category, "\n              AND\n              ");
+    }
+
+    filterQuery = "".concat(filterQuery, "\n            products.name ILIKE '%").concat(filter, "%'\n            OR products.description ILIKE '%").concat(filter, "%'\n            ");
+    query = "\n              SELECT products.*,\n              categories.name AS category_name \n              FROM products \n              LEFT JOIN categories ON(categories.id = products.category_id)\n              ".concat(filterQuery, "\n          \n            ");
+    return bancodeDados.query(query);
   }
 };

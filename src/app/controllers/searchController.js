@@ -5,31 +5,63 @@ const  { formatPrice} = require('../../lib/utils');
 module.exports  = {
     
    async index(req, res){
-       let results = await Product.all()
-       const products = results.rows
 
-    
-       if(!products) res.send("Product Not-found !")
+        let results,
+            params = {}
 
-       async function getImage(productID){
-           let results =  await Product.files(productID)
+        const {filter, category} = req.query
 
-           const files = results.rows.map(file =>  `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
-           
-           return  files[0]
-       }
+        if(!filter) return res.redirect('/')
 
-       const productPromise = products.map( async product =>{
-           product.img = await getImage(product.id)
-           product.oldPrice  = formatPrice(product.old_price)
-           product.price  = formatPrice(product.price)
+        params.filter = filter
 
-           return product
-       }).filter((product, index )=> index > 2 ? false : true ) 
+        if(category){
+            params.category = category
+        }
 
-       const lastAdd = await Promise.all(productPromise)
+        results = await Product.search(params)
 
-       return res.render('search/index', { products : lastAdd})
+
+        async function getImage(product_id){
+            let  results = await Product.files(product_id)
+            const files = results.rows.map(file =>  `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
+                
+            return  files[0]
+        }
+       
+        const productPromise = results.rows.map(async product => {
+            product.img = await getImage(product.id)
+            product.oldPrice = formatPrice(product.old_price)
+            product.price = formatPrice(product.price)
+
+            return product
+        })
+
+        const products  = await Promise.all(productPromise)
+
+        const search = {
+            term : req.query.filter,
+            total : products.length
+        }
+     
+
+        const categories = products.map(product => ({
+            id: product.category_id,
+            name : product.category_name
+        })).reduce((categoryFiltered, category)=> {
+ 
+
+            const found = categoryFiltered.some(cat => cat.id == category.id)
+            
+            if(!found) 
+                categoryFiltered.push(category)
+
+            return categoryFiltered
+        }, [])
+
+        
+
+       return res.render('search/index', { products, search, categories})
 
    }
 }

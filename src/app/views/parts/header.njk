@@ -15,9 +15,9 @@
           name="filter"
           placeholdfer = "buscar por Produtos"
 
-          {%if filter %}
-            value = {{filter}}
-          {%endif%}
+           {%if search.term %}
+            value = {{search.term}}
+          {% endif %}
          >
       </form>
 
