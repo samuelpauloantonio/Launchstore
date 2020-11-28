@@ -33,9 +33,8 @@ ALTER TABLE "files" ADD FOREIGN KEY ("product_id") REFERENCES "products" ("id");
 
 /*FUNCTION PROCEDURE E TRIGGERS*/
 
-
-create function setTimes() 
-  returns triggers As $$
+CREATE FUNCTION setTime()
+returns trigger AS $$
 begin 
 
 NEW.update_at = now();
@@ -43,13 +42,13 @@ NEW.update_at = now();
 return new;
 
 end;
+$$
+language plpgsql
 
-language plpsql 
 
+create Trigger set_timestamp 
+before update on products 
 
-create trigger set_timestamp
-before update on products
+for each Row 
 
-FOR EACH Row 
-
-EXECUTE PROCEDURE setTimes();
+execute procedure setTime()
