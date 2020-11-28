@@ -52,7 +52,8 @@
         <input type="text" 
         name="cpf_cnpj" 
         placeholder="Digite seu CPF ou CNPJ"
-        value = "{{ user.cpf_cnpj }} "
+        value = "{{ user.cpf_cnpj }}"
+        onkeydown = "Mask.apply(this, 'cpfCnpj')"
         />
     </div>
 </div>
@@ -65,6 +66,7 @@
         name="cep" 
         placeholder="99999-999"
         value = "{{user.cep}} "
+        onkeydown = "Mask.apply(this, 'cep')"
         />
     </div>
 </div>

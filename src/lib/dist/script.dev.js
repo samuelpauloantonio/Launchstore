@@ -29,6 +29,30 @@ var Mask = {
       style: "currency",
       currency: "AKZ"
     }).format(value / 100);
+  },
+  cpfCnpj: function cpfCnpj(value) {
+    //input.value = value.replace(/(\D{4})(\D{4})/, "$1");
+    value = value.replace(/\D/g, "");
+    if (value.length > 14) value = value.slice(0, -1);
+
+    if (value.length > 11) {
+      value = value.replace(/(\d{2})(\d)/, "$1-$2");
+      value = value.replace(/(\d{3})(\d)/, "$1-$2");
+      value = value.replace(/(\d{3})(\d)/, "$1/$2");
+      value = value.replace(/(\d{4})(\d)/, "$1-$2");
+    } else {
+      value = value.replace(/(\d{3})(\d)/, "$1.$2");
+      value = value.replace(/(\d{3})(\d)/, "$1.$2");
+      value = value.replace(/(\d{3})(\d)/, "$1-$2");
+    }
+
+    return value;
+  },
+  cep: function cep(value) {
+    value = value.replace(/\D/g, "");
+    if (value.length > 8) value = value.slice(0, -1);
+    value = value.replace(/(\d{3})(\d)/, "$1-$2");
+    return value;
   }
 }; //upload Photos
 //gerenciador de Photos
@@ -44,7 +68,6 @@ var PhotosUpload = {
     if (PhotosUpload.hasLimit(event)) return;
     Array.from(fileList).forEach(function (file) {
       var reader = new FileReader();
-      console.log(reader);
       PhotosUpload.files.push(file);
 
       reader.onload = function () {
