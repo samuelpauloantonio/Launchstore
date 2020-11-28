@@ -4,7 +4,7 @@ var express = require("express");
 
 var nunjucks = require("nunjucks");
 
-var routes = require('./routes');
+var routes = require('./Routers');
 
 var methodOverride = require('method-override');
 

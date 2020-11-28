@@ -17,13 +17,14 @@ routes.get("/", HomeControllers.index)
 
 // Products 
 
-
-
 const productsController = require('../app/controllers/productsController')
 const searchController = require('../app/controllers/searchController')
 
-routes.get('/products/create', productsController.create)
 
+
+//Products 
+
+routes.get('/products/create', productsController.create)
 //Search 
 routes.get('/products/search', searchController.index)
 
@@ -59,40 +60,40 @@ routes.get('/products/ads/create', (req, res) => {
 
 
 
-//  routes.use('/products', products)
-//  routes.use('/users', users)
+// //  routes.use('/products', products)
+// //  routes.use('/users', users)
 
 
 
 
-//Controle de usuario
+// //Controle de usuario
 
-//login/logout 
+// //login/logout 
 
-// routes.get('/login', SectionController.loginFom)                 
-// routes.post('/login',SectionController.login)
-// routes.post('/logout', SectionController.logout)
+// // routes.get('/login', SectionController.loginFom)                 
+// // routes.post('/login',SectionController.login)
+// // routes.post('/logout', SectionController.logout)
 
-// // reset password / forgot
+// // // reset password / forgot
 
-// routes.get('/forgot-password', SectionController.forgotFom)
-// routes.get('/reset-password', SectionController.resetFom)
+// // routes.get('/forgot-password', SectionController.forgotFom)
+// // routes.get('/reset-password', SectionController.resetFom)
 
-// routes.post('/forgot-password', SectionController.forgotFom)
-// routes.post('/reset-password', SectionController.resetFom)
+// // routes.post('/forgot-password', SectionController.forgotFom)
+// // routes.post('/reset-password', SectionController.resetFom)
 
 
 
-// //user register UserController
+// // //user register UserController
 
 routes.get('/users/register', UserController.registerForm)
  
-// routes.post('/register', UserController.post)
+// // routes.post('/register', UserController.post)
 
 
-// routes.get('/', UserController.show)
-// routes.put('/', UserController.put)
-// routes.delete('/', UserController.delete)
+// // routes.get('/', UserController.show)
+// // routes.put('/', UserController.put)
+// // routes.delete('/', UserController.delete)
 
 
 
