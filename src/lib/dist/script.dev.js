@@ -1,6 +1,24 @@
 "use strict";
 
-//Funcao Alert Delete
+function verficarForms() {
+  var forms = document.querySelector('.user-register form');
+
+  function paraEvento(e) {
+    var inputs = forms.querySelectorAll('input');
+    Array.from(inputs).forEach(function (input) {
+      if (input.value == "") {
+        var name = input.name;
+        alert("please fill the input ".concat(name));
+        e.preventDefault();
+      }
+    });
+  }
+
+  forms.addEventListener('submit', paraEvento);
+}
+
+verficarForms(); //Funcao Alert Delete
+
 function locations(edit) {
   var currentpage = document.location.pathname;
 
@@ -53,6 +71,71 @@ var Mask = {
     if (value.length > 8) value = value.slice(0, -1);
     value = value.replace(/(\d{3})(\d)/, "$1-$2");
     return value;
+  }
+}; //validate 
+
+var validate = {
+  apply: function apply(input, func) {
+    validate.clearErrors(input);
+    var results = validate[func](input.value);
+    input.value = results.value;
+
+    if (results.error) {
+      validate.displayError(input, results.error);
+    }
+  },
+  displayError: function displayError(input, error) {
+    var div = document.createElement('div');
+    div.classList.add('error');
+    div.innerHTML = error;
+    input.parentNode.appendChild(div);
+    input.style = "outline-color:red";
+    input.focus();
+  },
+  clearErrors: function clearErrors(input) {
+    var errorDiv = input.parentNode.querySelector('.error');
+    input.style = 'var(--outline-color)';
+
+    if (errorDiv) {
+      errorDiv.remove();
+    }
+  },
+  isEmail: function isEmail(value) {
+    var error = null;
+    var emailFotmat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!value.match(emailFotmat)) error = "Email inválido";
+    return {
+      error: error,
+      value: value
+    };
+  },
+  isCpfCnpj: function isCpfCnpj(value) {
+    var error = null;
+    var cleanValue = value.replace(/\D/g, "");
+
+    if (cleanValue.length > 11 && cleanValue.length !== 14) {
+      error = "CNPJ incorreto";
+    } else if (cleanValue.length < 12 && cleanValue.length !== 11) {
+      error = "CPF incorrento";
+    }
+
+    return {
+      error: error,
+      value: value
+    };
+  },
+  isCep: function isCep(value) {
+    var error = null;
+    var cleanValue = value.replace(/\D/g, "");
+
+    if (cleanValue.length !== 8) {
+      error = "CEP incorreto";
+    }
+
+    return {
+      error: error,
+      value: value
+    };
   }
 }; //upload Photos
 //gerenciador de Photos

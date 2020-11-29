@@ -50,6 +50,8 @@
   --primary-color : #fd951f;
   --color-body : #faf6f6;
   --secundary-color : rgb(19, 73, 221); 
+  --outline-color: rgba(56, 227, 250, 0.842) ;
+
 }
  
 *{
@@ -57,9 +59,9 @@
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
-  outline: none;
   list-style: none;
   border: none;
+  outline-color: var(--outline-color);
 }
 
 
@@ -219,6 +221,7 @@ form .item select {
   font-size: 16px;
   border-radius: 4px;
   border:1px solid #efeefe;
+
  
 }
 
@@ -688,3 +691,13 @@ form .item  #photos-priview .photo:hover i {
 
 
 
+/*input error*/
+
+
+ .error {
+  background: #e74c3c;
+  padding: 4px;
+  border-radius: 4px;
+  color: white;
+  font-size: 14px;
+}

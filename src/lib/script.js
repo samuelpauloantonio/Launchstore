@@ -1,4 +1,33 @@
+function verficarForms(){
+  const forms  = document.querySelector('.user-register form')
+
+  function paraEvento(e){
+    
+    let inputs = forms.querySelectorAll('input')
+
+    Array.from(inputs).forEach(input =>  {
+      
+      if(input.value == "") {
+          let {name} = input
+          alert(`please fill the input ${name}`)
+        e.preventDefault()
+      }
+    })
+ 
+
+  }
+  
+  forms.addEventListener('submit', paraEvento)
+
+}verficarForms()
+
+
+
+
+
 //Funcao Alert Delete
+
+
 
 
 
@@ -80,6 +109,107 @@ const Mask = {
 
   }
 };
+
+
+//validate 
+
+
+const validate = {
+  apply(input, func){
+
+    validate.clearErrors(input)
+
+    let results = validate[func](input.value)
+
+        input.value = results.value
+
+        if(results.error) {
+        validate.displayError(input, results.error)
+
+        }
+  },
+
+
+  displayError(input, error){
+    const div = document.createElement('div')
+          div.classList.add('error')
+          div.innerHTML = error
+          input.parentNode.appendChild(div)
+          input.style = "outline-color:red"
+          input.focus()
+  },
+
+  clearErrors(input){
+    const errorDiv = input.parentNode.querySelector('.error')
+  
+    input.style = 'var(--outline-color)'
+      if(errorDiv){
+        errorDiv.remove()
+
+      }
+  },
+
+  isEmail(value) {
+    let error = null
+
+    const  emailFotmat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+
+    if(!value.match(emailFotmat))
+      error = "Email inválido"
+
+
+
+    return {
+      error,
+      value
+    }
+
+  },
+  isCpfCnpj(value){
+
+
+      let error = null 
+
+      const cleanValue = value.replace(/\D/g,"")
+
+      if(cleanValue.length > 11 &&  cleanValue.length !== 14){
+        error = "CNPJ incorreto"
+      }
+
+      else if(cleanValue.length < 12 && cleanValue.length !== 11){
+        error  = "CPF incorrento"
+      }
+
+
+      return {
+        error,
+        value
+      }
+  },
+
+  isCep(value){
+
+    let error = null 
+
+    const cleanValue = value.replace(/\D/g,"")
+
+    if(cleanValue.length  !==  8 ){
+      error = "CEP incorreto"
+    }
+
+
+    return {
+      error,
+      value
+    }
+  }
+
+
+  
+  
+}
+
 
 //upload Photos
 //gerenciador de Photos
