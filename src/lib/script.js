@@ -8,8 +8,14 @@ function verficarForms(){
     Array.from(inputs).forEach(input =>  {
       
       if(input.value == "") {
-          let {name} = input
-          alert(`please fill the input ${name}`)
+          
+         let  attr  =  input.getAttribute('attr')
+
+          alert(` Por favor preencha o Campo : ${attr}` )
+
+        
+
+
         e.preventDefault()
       }
     })

@@ -3,9 +3,10 @@
     <div>Nome Completo </div>
     <div>
         <input type="text" 
-        name="name" 
+        name="name"
+        attr = "Nome" 
         placeholder="Digite seu Nome Completo"
-        value = "{{user.name}} "
+        value = "{{user.name}}"
         />
     </div>
 </div>
@@ -15,6 +16,7 @@
     <div>
         <input type="email" 
         name="email" 
+        attr = "E-mail" 
         placeholder="Digite seu E-mail "
         value = "{{user.email}} "
         onblur = "validate.apply(this, 'isEmail')"
@@ -28,8 +30,10 @@
     <div>
         <input type="password" 
         name="password" 
+        attr = "Senha" 
         placeholder="Digite uma senha segura"
         value = "{{user.password}}"
+   
         />
     </div>
 </div>
@@ -41,6 +45,7 @@
     <div>
         <input type="password" 
         name="passwordRepeat" 
+        attr = "Repetir Senha" 
         placeholder="Ripita a Senha"
         />
     </div>
@@ -53,6 +58,7 @@
     <div>
         <input type="text" 
         name="cpf_cnpj" 
+        attr = "Cpf ou Cnpj" 
         placeholder="Digite seu CPF ou CNPJ"
         value = "{{ user.cpf_cnpj }}"
         onkeydown = "Mask.apply(this, 'cpfCnpj')"
@@ -67,6 +73,7 @@
     <div>
         <input type="text" 
         name="cep" 
+        attr = "Cep" 
         placeholder="99999-999"
         value = "{{user.cep}} "
         onkeydown = "Mask.apply(this, 'cep')"
@@ -81,6 +88,7 @@
     <div>
         <input type="text" 
         name="address" 
+        attr = "Endereço" 
         placeholder="Digite seu Endereço Completo"
         value = "{{user.address}} "
         />

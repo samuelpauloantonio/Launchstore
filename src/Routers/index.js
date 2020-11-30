@@ -88,7 +88,7 @@ routes.get('/products/ads/create', (req, res) => {
 
 routes.get('/users/register', UserController.registerForm)
  
-// // routes.post('/register', UserController.post)
+routes.post('/users/register', UserController.post)
 
 
 // // routes.get('/', UserController.show)
