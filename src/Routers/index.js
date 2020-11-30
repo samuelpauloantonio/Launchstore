@@ -2,6 +2,8 @@ const express = require("express")
 const routes = express.Router()
 const multer = require('../app/middlewares/multer')
 
+const  Validator = require('../app/validators/user')
+
 
 const HomeControllers = require("../app/controllers/HomeController")
 const UserController = require('../app/controllers/UserController')
@@ -88,7 +90,7 @@ routes.get('/products/ads/create', (req, res) => {
 
 routes.get('/users/register', UserController.registerForm)
  
-routes.post('/users/register', UserController.post)
+routes.post('/users/register', Validator.post, UserController.post)
 
 
 // // routes.get('/', UserController.show)
