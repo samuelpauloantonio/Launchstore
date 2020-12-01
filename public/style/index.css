@@ -4,7 +4,7 @@
 
 @font-face{
   font-family: "Roboto";
-  src: url('./Roboto-Regular.ttf') 
+  src: url('../fonts/Roboto-Regular.ttf') 
 }
 /*MaterialIcons-Regular.ttf */
 
@@ -15,9 +15,9 @@
   font-weight: 400;
   src: local('Material Icons'),
     local('MaterialIcons-Regular'),
-    url('./MaterialIcons-Regular.woff2') format('woff2'),
-    url('./MaterialIcons-Regular.woff') format('woff'),
-    url('./MaterialIcons-Regular.ttf') format('truetype');
+    url('../fonts/MaterialIcons-Regular.woff2') format('woff2'),
+    url('../fonts/MaterialIcons-Regular.woff') format('woff'),
+    url('../fonts/MaterialIcons-Regular.ttf') format('truetype');
 }
 
 

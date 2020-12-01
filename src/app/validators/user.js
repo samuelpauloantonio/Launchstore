@@ -33,6 +33,7 @@ async function post(req, res, next){
 
         if(user) return res.render('user/register', {
 
+          //personalizando menssagens de erros
           user : req.body,
           error : "Usuário já Cadastrado."
         })
@@ -41,7 +42,12 @@ async function post(req, res, next){
 
 
        if(password != passwordRepeat)
-            return res.send('As pesswords não consciden')
+            return res.render('user/register', {
+
+              //personalizando menssagens de erros
+              user : req.body,
+              error : "As Senhas não Consciden"
+            })
 
         
         //inportante chamar sempre o nex 

@@ -23,7 +23,9 @@ function verficarForms(){
 
   }
   
+if(forms){
   forms.addEventListener('submit', paraEvento)
+}
 
 }verficarForms()
 
