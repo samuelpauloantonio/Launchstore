@@ -31,7 +31,11 @@ async function post(req, res, next){
         })
 
 
-        if(user) return res.send('users exites')
+        if(user) return res.render('user/register', {
+
+          user : req.body,
+          error : "Usuário já Cadastrado."
+        })
 
        // if password and repeatpassword is math
 

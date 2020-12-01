@@ -62,6 +62,7 @@
   list-style: none;
   border: none;
   outline-color: var(--outline-color);
+  outline: none;
 }
 
 
@@ -221,6 +222,8 @@ form .item select {
   font-size: 16px;
   border-radius: 4px;
   border:1px solid #efeefe;
+  outline:revert;
+  outline-color: var(--outline-color);
 
  
 }

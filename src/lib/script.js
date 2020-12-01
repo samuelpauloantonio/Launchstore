@@ -7,7 +7,7 @@ function verficarForms(){
 
     Array.from(inputs).forEach(input =>  {
       
-      if(input.value == "") {
+      if(input.value == "" ) {
           
          let  attr  =  input.getAttribute('attr')
 
