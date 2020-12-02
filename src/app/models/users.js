@@ -17,6 +17,8 @@ module.exports = {
  
        })
 
+
+       
       
 
        const results  = await bancodeDados.query(query)
