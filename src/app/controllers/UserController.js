@@ -20,7 +20,9 @@ module.exports = {
 
         const userId = await Users.create(req.body)
 
+        //controlo de sessao do usuario
+        req.session.userId = userId
 
-        return res.redirect('/users')
+        return res.redirect('/users') 
     }
 }
