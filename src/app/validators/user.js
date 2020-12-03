@@ -19,7 +19,7 @@ async function post(req, res, next){
     
         //check if email and cpfncpj existes
 
-
+        
         let  {email, cpf_cnpj, password , passwordRepeat } = req.body 
             
 

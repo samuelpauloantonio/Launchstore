@@ -1,8 +1,13 @@
-
+const Users = require('../models/users')
 module.exports = {
 
     registerForm(req, res){
         return res.render('user/register.njk')
+    },
+
+
+    show(req, res){
+        return res.send('Ok usuario Cadastrado!')
     },
 
 
@@ -11,6 +16,11 @@ module.exports = {
 
         // validação de usuario por meio  de middleware == tem um 
         // Middleware no Validator
-        return res.send('pacced!')
+
+
+        const userId = await Users.create(req.body)
+
+
+        return res.redirect('/users')
     }
 }
