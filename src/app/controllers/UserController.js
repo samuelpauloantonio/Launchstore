@@ -11,15 +11,9 @@ module.exports = {
    async show(req, res){
 
 
-        const { userId : id } = req.session
 
-
-        const user  = await Users.findOne({ where : {id} })
-
-
-        if(!user) return res.render('user/register', {
-            error: "Usuário não encontrado!"
-        })
+        const  { user } = req
+       
 
 
         user.cpf_cnpj = formatCpfCnpj(user.cpf_cnpj)
@@ -44,5 +38,36 @@ module.exports = {
         req.session.userId = userId
 
         return res.redirect('/users') 
+    },
+
+    update(req, res){
+
+        try{
+
+            const { name, email, cpf_cnpj , cep, address }
+             = req.body
+
+
+             cpf_cnpj = cpf_cnpj.replace(/\D/g,"")
+             cep = cep.replace(/\D/g,"")
+
+
+             await Users.update(user.id, {
+                 name, 
+                 email,
+                 cpf_cnpj,
+                 cep,
+                 address
+             })
+
+             return res.render('user/index', {
+                 success : 'Conta actualizada com sucesso'
+             })
+
+        }catch(err){
+            console.error(err)
+        }
+
+
     }
 }
