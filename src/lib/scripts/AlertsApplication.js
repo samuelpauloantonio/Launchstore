@@ -1,17 +1,33 @@
-function locations(edit) {
-    const currentpage = document.location.pathname;
-  
-  
-    if (currentpage.includes(edit)) {
-      let formDelet = document.querySelector("#form-delete");
-  
-      formDelet.addEventListener("submit", function (event) {
-        const confirmDelete = confirm("do you like delete this user ?");
-  
-        if (!confirmDelete) {
-          event.preventDefault();
-        }
-      });
+
+const currentpage = document.location.pathname;
+
+const pathsNames = ['edit', 'users']
+
+
+const form = document.querySelector('#form-delete')
+
+form.addEventListener('click', (event) => {
+
+
+  for (let i = 0; i < pathsNames.length; i++) {
+    if (currentpage.includes(pathsNames[i])) {
+
+      const message = form.dataset.message
+
+      const confirmAlert = confirm(message)
+
+
+      if (!confirmAlert) {
+        event.preventDefault()
+
+      }
     }
   }
-  locations("edit");
+
+})
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+{% extends "layout.njk" %}
+
+    {%block content %}
+
+    <section class=" dashbord container form ">
+
+        <form 
+        method="POST" 
+        action="/users?_method=PUT"
+        
+        >
+
+            <div class= "header">
+                <h3> Editar Produtos </h3>
+                 <input type="hidden" name="id" value= '{{user.id}}'>
+            </div>
+
+
+            <div class="fields">
+                {% include "user/fields.njk" %}
+            </div>
+
+            <button class="button edit"  type="submit">Actulaizar</button>
+        </form>
+
+        <form  id="form-delete"  
+         action="/users?_method=DELETE" 
+         method="post"
+          data-message ="Tem Certeza que dezeja deletar o usuário? essa acção não poderá ser desfeita." 
+           >
+  
+            <button type="submit" class='button delete' > Deletar</button>
+    
+            <input type="hidden" name="id" value="{{user.id}}">
+
+        </form>
+        
+    </section>
+
+
+    {% endblock %}
+

@@ -19,7 +19,10 @@
             <button class="button edit"  type="submit">Actulaizar</button>
         </form>
 
-        <form  id="form-delete"   action="/products?_method=DELETE" method="post" >
+        <form  id="form-delete"   action="/products?_method=DELETE" method="post"
+        data-message ="Tem Certeza que dezeja
+           deletar o Produto ? essa acção não poderá ser desfeita." 
+           > >
   
             <button type="submit" class='button delete' > Deletar</button>
     

@@ -1,67 +1,64 @@
 const Product = require("../models/product");
-const  { formatPrice} = require('../../lib/utils');
+const { formatPrice } = require("../../lib/utils");
 
+module.exports = {
+  async index(req, res) {
+    let results,
+      params = {};
 
-module.exports  = {
-    
-   async index(req, res){
+    const { filter, category } = req.query;
 
-        let results,
-            params = {}
+    if (!filter) return res.redirect("/");
 
-        const {filter, category} = req.query
+    params.filter = filter;
 
-        if(!filter) return res.redirect('/')
+    if (category) {
+      params.category = category;
+    }
 
-        params.filter = filter
+    results = await Product.search(params);
 
-        if(category){
-            params.category = category
-        }
+    async function getImage(product_id) {
+      let results = await Product.files(product_id);
+      const files = results.rows.map(
+        (file) =>
+          `${req.protocol}://${req.headers.host}${file.path.replace(
+            "public",
+            ""
+          )}`
+      );
 
-        results = await Product.search(params)
+      return files[0];
+    }
 
+    const productPromise = results.rows.map(async (product) => {
+      product.img = await getImage(product.id);
+      product.oldPrice = formatPrice(product.old_price);
+      product.price = formatPrice(product.price);
 
-        async function getImage(product_id){
-            let  results = await Product.files(product_id)
-            const files = results.rows.map(file =>  `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
-                
-            return  files[0]
-        }
-       
-        const productPromise = results.rows.map(async product => {
-            product.img = await getImage(product.id)
-            product.oldPrice = formatPrice(product.old_price)
-            product.price = formatPrice(product.price)
+      return product;
+    });
 
-            return product
-        })
+    const products = await Promise.all(productPromise);
 
-        const products  = await Promise.all(productPromise)
+    const search = {
+      term: req.query.filter,
+      total: products.length,
+    };
 
-        const search = {
-            term : req.query.filter,
-            total : products.length
-        }
-     
+    const categories = products
+      .map((product) => ({
+        id: product.category_id,
+        name: product.category_name,
+      }))
+      .reduce((categoryFiltered, category) => {
+        const found = categoryFiltered.some((cat) => cat.id == category.id);
 
-        const categories = products.map(product => ({
-            id: product.category_id,
-            name : product.category_name
-        })).reduce((categoryFiltered, category)=> {
- 
+        if (!found) categoryFiltered.push(category);
 
-            const found = categoryFiltered.some(cat => cat.id == category.id)
-            
-            if(!found) 
-                categoryFiltered.push(category)
+        return categoryFiltered;
+      }, []);
 
-            return categoryFiltered
-        }, [])
-
-        
-
-       return res.render('search/index', { products, search, categories})
-
-   }
-}
+    return res.render("search/index", { products, search, categories });
+  },
+};
