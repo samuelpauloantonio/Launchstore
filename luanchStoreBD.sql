@@ -51,8 +51,8 @@ CREATE TABLE "users" (
   "cpf_cnpj" text UNIQUE NOT NULL,
   "cep" text ,
   "address" text,
-  "create_at" timestamp DEFAULT (now()),
-  "update_at" timestamp DEFAULT (now())
+  "created_at" timestamp DEFAULT (now()),
+  "updated_at" timestamp DEFAULT (now())
 );
 
 

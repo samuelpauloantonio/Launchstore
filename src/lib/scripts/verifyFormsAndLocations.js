@@ -30,6 +30,6 @@ function verficarForms(){
     forms.addEventListener('submit', paraEvento)
   }
   
-  }verficarForms()
+  }//verficarForms()
   
   

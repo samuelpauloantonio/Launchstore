@@ -94,7 +94,7 @@ routes.post('/users/register', Validator.post, UserController.post)
 
 
  routes.get('/users', Validator.show, UserController.show)
-// // routes.put('/', UserController.put)
+routes.put('/users', Validator.put , UserController.put)
 // // routes.delete('/', UserController.delete)
 
 

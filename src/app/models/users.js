@@ -1,5 +1,6 @@
 const bancodeDados = require('../../config/BD_conection')
 const { hash }  = require("bcryptjs")
+
  
 module.exports = {
 
@@ -59,16 +60,35 @@ module.exports = {
         })
  
        })
-
-
        
-      
-
        const results  = await bancodeDados.query(query)
 
        return results.rows[0]
-   }
+   },
 
+
+   async update(id, fields){
+      let query = 'UPDATE users SET'
+
+      Object.keys(fields).map(( key, index, array ) => {
+
+        if(index + 1 < array.length){
+          query = `${query}
+          ${key} = ' ${fields[key]}',
+          `
+        }else{
+          //last position or interation
+
+          query = `${query} 
+          ${key} = '${fields[key]}'
+          WHERE id = ${id}
+        `
+        }
+      })
+
+      await bancodeDados.query(query)
+   }
+ 
 
 
 

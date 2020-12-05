@@ -13,7 +13,7 @@ function checkAllFields(body){
   const keys = Object.keys(body);
          
   for (let key of keys) {
-    if (req.body[key] == "") {
+    if (body[key] == "") {
 
       return {
         user : body,
@@ -116,10 +116,10 @@ module.exports = {
 
       // verificar se é o  mesmo usuario
 
-      const user  = await Users.findOne({where : id})
+      const user  = await Users.findOne({where : {id} })
 
 
-      const  passed =  await compare( password, user.password)
+      const  passed =  await compare( password , user.password)
 
 
       if(!passed) return res.render('user/index', {
@@ -129,10 +129,10 @@ module.exports = {
 
 
       req.user = user
+ 
 
 
-
-      next()
+      next()  
 
       
   }

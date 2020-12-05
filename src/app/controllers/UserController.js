@@ -40,11 +40,13 @@ module.exports = {
         return res.redirect('/users') 
     },
 
-    update(req, res){
+    async put(req, res){
 
         try{
 
-            const { name, email, cpf_cnpj , cep, address }
+            const { user } = req
+
+            let { name, email, cpf_cnpj , cep, address }
              = req.body
 
 
@@ -61,6 +63,7 @@ module.exports = {
              })
 
              return res.render('user/index', {
+                 user : req.body,
                  success : 'Conta actualizada com sucesso'
              })
 
