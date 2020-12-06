@@ -1,6 +1,6 @@
 {% extends "layout.njk" %}
 
-    {%block content %}
+    {% block content %}
 
     <section class=" dashbord container form ">
 
@@ -11,7 +11,7 @@
         >
 
             <div class= "header">
-                <h3> Editar Produtos </h3>
+                <h3> Editar Usuário</h3>
                  <input type="hidden" name="id" value= '{{user.id}}'>
             </div>
 
@@ -23,11 +23,7 @@
             <button class="button edit"  type="submit">Actulaizar</button>
         </form>
 
-        <form  id="form-delete"  
-         action="/users?_method=DELETE" 
-         method="post"
-          data-message ="Tem Certeza que dezeja deletar o usuário? essa acção não poderá ser desfeita." 
-           >
+        <form id="form-delete"   action="/users?_method=DELETE" method="post" data-message ="Tem Certeza que dezeja deletar o usuário? essa acção não poderá ser desfeita. ">
   
             <button type="submit" class='button delete' > Deletar</button>
     
