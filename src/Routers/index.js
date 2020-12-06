@@ -7,7 +7,7 @@ const  Validator = require('../app/validators/user')
 
 const HomeControllers = require("../app/controllers/HomeController")
 const UserController = require('../app/controllers/UserController')
-const SectionController = require('../app/controllers/SectionController')
+const sessionControler = require('../app/controllers/SessionController')
 
 // const users = require('./users')
 // const products = require('./products')
@@ -72,17 +72,17 @@ routes.get('/products/ads/create', (req, res) => {
 
 // //login/logout 
 
-// // routes.get('/login', SectionController.loginFom)                 
-// // routes.post('/login',SectionController.login)
-// // routes.post('/logout', SectionController.logout)
+// // routes.get('/login', sessionControler.loginFom)                 
+// // routes.post('/login',sessionControler.login)
+routes.post('/users/logout', sessionControler.logout)
 
 // // // reset password / forgot
 
-// // routes.get('/forgot-password', SectionController.forgotFom)
-// // routes.get('/reset-password', SectionController.resetFom)
+// // routes.get('/forgot-password', sessionControler.forgotFom)
+// // routes.get('/reset-password', sessionControler.resetFom)
 
-// // routes.post('/forgot-password', SectionController.forgotFom)
-// // routes.post('/reset-password', SectionController.resetFom)
+// // routes.post('/forgot-password', sessionControler.forgotFom)
+// // routes.post('/reset-password', sessionControler.resetFom)
 
 
 
