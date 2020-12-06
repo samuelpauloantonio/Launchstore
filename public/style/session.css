@@ -1,0 +1,27 @@
+section.login{
+  display: flex;
+  flex-direction: column;
+transform: translateY(5vh);
+}
+
+
+
+section.login .fields{
+    margin-top: 32px;
+}
+
+section.login #footer ul{
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+section.login #footer ul li a{
+    color: #777;
+}
+
+section.login #footer ul li a:hover{
+    color: black;
+    font-weight: bold;
+    transition: all 20ms ease-in;
+}

@@ -95,9 +95,7 @@ footer{
 
 
 /* HEADER */
-header {
-  background: black;
-}
+
 header  > div, .footer{
   width: 100%;
   text-align: center;

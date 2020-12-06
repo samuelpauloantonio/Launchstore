@@ -2,7 +2,9 @@ const express = require("express")
 const routes = express.Router()
 const multer = require('../app/middlewares/multer')
 
-const  Validator = require('../app/validators/user')
+const  ValidatorUsers = require('../app/validators/user')
+const  ValidatorSession = require('../app/validators/session')
+
 
 
 const HomeControllers = require("../app/controllers/HomeController")
@@ -72,8 +74,8 @@ routes.get('/products/ads/create', (req, res) => {
 
 // //login/logout 
 
-// // routes.get('/login', sessionControler.loginFom)                 
-// // routes.post('/login',sessionControler.login)
+routes.get('/users/login', sessionControler.loginForm)                 
+routes.post('/users/login', ValidatorSession.login ,sessionControler.login)
 routes.post('/users/logout', sessionControler.logout)
 
 // // // reset password / forgot
@@ -90,11 +92,11 @@ routes.post('/users/logout', sessionControler.logout)
 
 routes.get('/users/register', UserController.registerForm)
  
-routes.post('/users/register', Validator.post, UserController.post)
+routes.post('/users/register', ValidatorUsers.post, UserController.post)
 
 
- routes.get('/users', Validator.show, UserController.show)
-routes.put('/users', Validator.put , UserController.put)
+ routes.get('/users', ValidatorUsers.show, UserController.show)
+routes.put('/users', ValidatorUsers.put , UserController.put)
 // // routes.delete('/', UserController.delete)
 
 
