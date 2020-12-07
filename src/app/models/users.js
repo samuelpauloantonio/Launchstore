@@ -22,10 +22,11 @@ module.exports = {
       
        //hash de senha
        const passwordHash = await hash(data.password, 8)
+       
   
       const values = [
         data.name,
-        data.email,
+        data.email.trim(),
         passwordHash,
         data.cpf_cnpj.replace(/\D/g,""),
         data.cep.replace(/\D/g,""),

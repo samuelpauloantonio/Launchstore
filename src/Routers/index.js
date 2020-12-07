@@ -1,9 +1,9 @@
 const express = require("express")
 const routes = express.Router()
 const multer = require('../app/middlewares/multer')
-
 const  ValidatorUsers = require('../app/validators/user')
 const  ValidatorSession = require('../app/validators/session')
+const { onlyUSers } = require('../app/middlewares/session')
 
 
 
@@ -28,9 +28,9 @@ const searchController = require('../app/controllers/searchController')
 
 //Products 
 
-routes.get('/products/create', productsController.create)
+routes.get('/products/create', onlyUSers, productsController.create)
 //Search 
-routes.get('/products/search', searchController.index)
+routes.get('/products/search', onlyUSers , searchController.index)
 
 
 

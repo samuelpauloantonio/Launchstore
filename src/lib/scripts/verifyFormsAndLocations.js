@@ -4,7 +4,7 @@
 function verficarForms(){
     const forms  = document.querySelector('.user-register form')
   
-    function paraEvento(e){
+    function VerificarInputs(e){
       
       let inputs = forms.querySelectorAll('input')
   
@@ -20,6 +20,10 @@ function verficarForms(){
   
   
           e.preventDefault()
+        }else if(input[type=email]){
+          const  input_email = document.querySelector('input[type=email]')
+               
+                input_email.value.trim() //tirar o espeço no value do email
         }
       })
    
@@ -27,7 +31,7 @@ function verficarForms(){
     }
     
   if(forms){
-    forms.addEventListener('submit', paraEvento)
+    forms.addEventListener('submit', VerificarInputs)
   }
   
   }verficarForms()
