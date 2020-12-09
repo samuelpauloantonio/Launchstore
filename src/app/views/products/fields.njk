@@ -1,3 +1,7 @@
+
+ {% if session.userId %}
+     <input type="hidden" name="user_id" value="{{session.userId}}">
+  {% endif %}
 <div class="item">
     <div>Categoria</div>
     <select name="category_id" id="select">
@@ -54,7 +58,7 @@
                         >close</i>
                     </div>
                 {% endfor %}
-                <input type="hidden" name="removed_files">
+                <input type="hidden" name="removed_files" >
             {% endif %}
         </div>
     </div>
@@ -97,7 +101,12 @@
     <div>
 
         <span>
-            <input type="radio" name="status" value="1" {% if product.status == '1'  %} checked {% endif %}> Sim
+            <input type="radio" name="status" value="1"
+             {% if product.status == '1'  %} 
+            checked 
+            {% endif %}
+
+            > Sim
         </span>
 
         <span>

@@ -131,14 +131,19 @@ async show(req,res){
 
   async put(req, res){
 
-    const keys =Object.keys(req.body);
+  
+    const keys =Object.keys(req.body)
 
     for (let key of keys) {
-      if (req.body[key] == "" && key != "removed_files" ) {
+   
+      // if (req.body[key] == "")  {
         
-        return res.send("please fill all fields" + " " +  key);
+      //   return res.send("please fill all fields" + " " +  key);
         
-      }
+      // }if (key != "user_id" && key != "removed_files")  {
+      //   return res.send("please fill all fields" + " " +  key);
+      // }
+      
     }
 
 

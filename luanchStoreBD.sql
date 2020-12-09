@@ -38,7 +38,7 @@ ALTER TABLE "products" ADD FOREIGN KEY ("category_id") REFERENCES "categories" (
 
 ALTER TABLE "files" ADD FOREIGN KEY ("product_id") REFERENCES "products" ("id");
 
-
+ 
 
 
 --CREATE USERS 

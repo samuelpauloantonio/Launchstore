@@ -37,13 +37,13 @@ routes.get('/products/search', onlyUSers , searchController.index)
 
 
 routes.get('/products/:id', productsController.show)
-routes.get('/products/:id/edit', productsController.edit )
+routes.get('/products/:id/edit', onlyUSers,  productsController.edit )
 
 
 //Files multer- Array e os metodos post, put e delete
-routes.post('/products/', multer.array('photos', 6), productsController.post )
-routes.put('/products/', multer.array('photos', 6), productsController.put )
-routes.delete('/', productsController.delete )
+routes.post('/products/', onlyUSers, multer.array('photos', 6), productsController.post )
+routes.put('/products/', onlyUSers, multer.array('photos', 6), productsController.put )
+routes.delete('/',  onlyUSers , productsController.delete )
 
 
 
@@ -73,17 +73,19 @@ routes.get('/products/ads/create', (req, res) => {
 // //Controle de usuario
 
 // //login/logout 
+    const { isLogedRedirectToUsers} = require('../app/middlewares/session')
 
-routes.get('/users/login', sessionControler.loginForm)                 
+
+routes.get('/users/login', isLogedRedirectToUsers,  sessionControler.loginForm)                 
 routes.post('/users/login', ValidatorSession.login ,sessionControler.login)
 routes.post('/users/logout', sessionControler.logout)
 
 // // // reset password / forgot
 
-// // routes.get('/forgot-password', sessionControler.forgotFom)
-// // routes.get('/reset-password', sessionControler.resetFom)
+routes.get('/users/forgot-password',  sessionControler.forgotForm)
+routes.get('/users/reset-password', sessionControler.resetForm)
 
-// // routes.post('/forgot-password', sessionControler.forgotFom)
+routes.post('/users/forgot-password',ValidatorSession.forgot , sessionControler.forgotForm)
 // // routes.post('/reset-password', sessionControler.resetFom)
 
 

@@ -10,6 +10,17 @@ const session = require('./config/session')
 const server = express()
 
 server.use(session)
+
+//variavel global do express para o nunjucks
+server.use((req, res, next) => {
+
+  server.locals.session = req.session
+
+  next()
+})
+
+
+
 server.use(express.urlencoded({ extended : true}))
 server.use(express.static("public"))
 server.use(express.static("src/lib/scripts"))

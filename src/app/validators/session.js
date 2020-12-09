@@ -33,6 +33,39 @@ async function login(req, res, next){
 }
 
 
+async function forgot(req, res, next){
+   
+
+    try{
+        const { email} = req.body 
+  
+        const  user = await Users.findOne({where : {email}})
+    
+    
+        if(!user) return  res.render('session/forgot-password', {
+            user : req.body,
+            error : "Usuário não Encotrado!"
+        })
+
+
+        req.user = user
+        
+        next()
+
+    }
+    catch(error){
+        console.log(error)
+        
+    }
+
+    
+
+}
+
+
+
+
 module.exports = {
-    login
+    login,
+    forgot
 }

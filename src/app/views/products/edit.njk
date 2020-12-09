@@ -2,13 +2,16 @@
 
     {%block content %}
 
+    
+
     <section class="container form ">
 
         <form method="POST" action="/products?_method=PUT" enctype= "multipart/form-data">
 
             <div class= "header">
                 <h3> Editar Produtos {{productID}} </h3>
-                 <input type="hidden" name="id" value= '{{product.id}}'>
+                 <input type="hidden" name="id" value='{{product.id}}'>
+                 
             </div>
 
 
@@ -22,12 +25,13 @@
         <form  id="form-delete"   action="/products?_method=DELETE" method="post"
         data-message ="Tem Certeza que dezeja
            deletar o Produto ? essa acção não poderá ser desfeita." 
-           > >
+           > 
   
             <button type="submit" class='button delete' > Deletar</button>
     
             <input type="hidden" name="id" value="{{product.id}}">
 
+           
         </form>
         
     </section>

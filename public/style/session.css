@@ -1,4 +1,4 @@
-section.login{
+section.login, .password{
   display: flex;
   flex-direction: column;
 transform: translateY(5vh);
@@ -6,7 +6,7 @@ transform: translateY(5vh);
 
 
 
-section.login .fields{
+section.login .fields, .password .fields{
     margin-top: 32px;
 }
 
