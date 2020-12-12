@@ -1,4 +1,6 @@
 const Users = require('../models/users')
+
+
 const {formatCep, formatCpfCnpj} = require('../../lib/utils')
 
 module.exports = {
@@ -72,5 +74,27 @@ module.exports = {
         }
 
 
+    },
+
+
+    async delete(req, res){
+
+        try{
+    
+            await Users.delete(req.body.id)
+
+           req.session.destroy()
+
+           return res.render('session/login.njk', {
+               success: "conta deletada com sucesso.!"
+           })
+
+        } catch(err){
+            console.error(err)
+
+            return res.render('user/index.njk',  {
+                error: "Aconteceu algun erro ao deletar  o usuário"
+            })
+        } 
     }
 }

@@ -10,17 +10,18 @@ function verficarForms(){
   
       Array.from(inputs).forEach(input =>  {
         
-        if(input.value == "" ) {
+        // if(input.value == "" ) {
             
-           let  attr  =  input.getAttribute('attr')
+        //    let  attr  =  input.getAttribute('attr')
   
-            alert(` Por favor preencha o Campo : ${attr}` )
+        //     alert(` Por favor preencha o Campo : ${attr}` )
   
           
   
   
-          e.preventDefault()
-        }else if(document.querySelector('input[type=email]') || document.querySelector('input[type=password]')){
+        //   e.preventDefault()
+        // } 
+        if(document.querySelector('input[type=email]') || document.querySelector('input[type=password]')){
           const  input_email = document.querySelector('input[type=email]')
           const  input_password = document.querySelector('input[type=password]')
                

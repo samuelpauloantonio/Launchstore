@@ -100,7 +100,7 @@ routes.post('/users/register', ValidatorUsers.post, UserController.post)
 
  routes.get('/users', ValidatorUsers.show, UserController.show)
 routes.put('/users', ValidatorUsers.put , UserController.put)
-// // routes.delete('/', UserController.delete)
+routes.delete('/users', UserController.delete)
 
 
 
