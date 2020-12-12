@@ -85,8 +85,9 @@ routes.post('/users/logout', sessionControler.logout)
 routes.get('/users/forgot-password',  sessionControler.forgotForm)
 routes.get('/users/reset-password', sessionControler.resetForm)
 
-routes.post('/users/forgot-password',ValidatorSession.forgot , sessionControler.forgotForm)
-// // routes.post('/reset-password', sessionControler.resetFom)
+routes.post('/users/forgot-password',ValidatorSession.forgot , sessionControler.forgot)
+
+routes.post('/users/reset-password', ValidatorSession.reset,  sessionControler.reset)
 
 
 

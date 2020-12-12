@@ -2,11 +2,11 @@
 //Verificar formularios se estao  preenchidos
 
 function verficarForms(){
-    const forms  = document.querySelector('.user-register form')
+    const form  = document.querySelector('.form form ')
   
     function VerificarInputs(e){
       
-      let inputs = forms.querySelectorAll('input')
+      let inputs = form.querySelectorAll('input')
   
       Array.from(inputs).forEach(input =>  {
         
@@ -20,18 +20,21 @@ function verficarForms(){
   
   
           e.preventDefault()
-        }else if(input[type=email]){
+        }else if(document.querySelector('input[type=email]') || document.querySelector('input[type=password]')){
           const  input_email = document.querySelector('input[type=email]')
+          const  input_password = document.querySelector('input[type=password]')
                
                 input_email.value.trim() //tirar o espeço no value do email
+                input_password.value.trim()
+         
         }
       })
    
   
     }
     
-  if(forms){
-    forms.addEventListener('submit', VerificarInputs)
+  if( form){
+    form.addEventListener('submit', VerificarInputs)
   }
   
   }verficarForms()

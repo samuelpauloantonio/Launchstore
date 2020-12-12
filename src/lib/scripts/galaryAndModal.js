@@ -1,16 +1,6 @@
 
 
 
-
-//Funcao Alert Delete
-
-
-
-
-
-
-
-
 //upload Photos
 //gerenciador de Photos
 
