@@ -1,154 +1,78 @@
-const bancodeDados = require('../../config/BD_conection')
-const fs  = require('fs')
 
-module.exports = {
+const Base = require('./Base')
+const db = require('../../config/BD_conection')
 
-      all(){
-        return  bancodeDados.query(`
-          SELECT * FROM products 
-          ORDER BY updated_at DESC
-        `)
-      },
 
-    filterBy(filter){
-     try {
-      return bancodeDados.query(`
-      SELECT products.*
-      FROM products 
-      WHERE products.name ILIKE '%${filter}%'
-      ORDER BY name ASC
-    `)
-     } catch (error) {
-       console.error(error)
-     }
-    },
-    create(dados) {
+Base.init({table : "products"})
 
-      try {
-        const query = `
-        INSERT INTO  products(
 
-          category_id,
-          user_id,
-          name,
-          description ,
-          old_price,
-          price,
-          quantity,
-          status
-          
-                    
-        ) VALUES($1, $2, $3, $4, $5, $6, $7, $8)
-        RETURNING id
-      `
+
+const products = {
+  ...Base,
+
+ async  files(id){
+   const  results = await db.query(`
+      SELECT * FROM files WHERE product_id = $1
       
-       dados.price = dados.price.replace(/\D/g,"")
-  
-      const values = [
-        dados.category_id,
-        dados.user_id,
-        dados.name,
-        dados.description,
-        dados.old_price || dados.price,
-        dados.price,
-        dados.quantity,
-        dados.status 
-      
-      ] 
-  
-       return bancodeDados.query(query, values)
+      `,[id])
 
-      }catch(err){
-        console.error(err)
-      }
-       
-      },
+      return results.rows
+  },
 
-      find(id){
-        return bancodeDados.query(`SELECT * FROM products WHERE id  = $1`, [id])
-      },
+  async search(params){
 
-      update(dados){
+    const {filter, category} = params 
 
-        try {
-          const query = `
-          UPDATE products SET 
+      let query = "",
+          filterQuery = `WHERE`
 
-            category_id = ($1),
-            user_id  = ($2),
-            name  = ($3),
-            description   = ($4) ,
-            old_price  = ($5),
-            price  = ($6),
-            quantity  = ($7),
-            status  = ($8)
-          WHERE id = $9
-        `
-        
-        const values = [
-          dados.category_id,
-          dados.user_id,
-          dados.name,
-          dados.description,
-          dados.old_price,
-          dados.price,
-          dados.quantity,
-          dados.status,
-          dados.id
-        
-        ] 
-    
-         return bancodeDados.query(query, values)
-          
-        } catch (err) {
-          console.error(err)
+        if(category){
+          filterQuery = `${filterQuery}
+          products.category_id = ${category}
+          AND
+          `
         }
 
-      },
+        filterQuery = `${filterQuery}
+        products.name ILIKE '%${filter}%'
+        OR products.description ILIKE '%${filter}%'
+        `
+
+       
+        
+        query = `
+          SELECT products.*,
+          categories.name AS category_name 
+          FROM products 
+          LEFT JOIN categories ON(categories.id = products.category_id)
+          ${filterQuery}
+      
+        `
+
+       const results =  await db.query(query)
+       return results.rows
+
+  },
+
+  filterBy(filter){
+    try {
+     return db.query(`
+     SELECT products.*
+     FROM products 
+     WHERE products.name ILIKE '%${filter}%'
+     ORDER BY name ASC
+   `)
+    } catch (error) {
+      console.error(error)
+    }
+   },
+
+}
+
+module.exports = products
 
 
-      delete(id){
-        return bancodeDados.query(`DELETE FROM products WHERE id = $1`, [id])
-      },
+  
 
-      files(id){
-        return bancodeDados.query(`
-          SELECT * FROM files WHERE product_id = $1`,[id])
-      },
-
-      search(params){
-
-        const {filter, category} = params 
-
-          let query = "",
-              filterQuery = `WHERE`
-
-            if(category){
-              filterQuery = `${filterQuery}
-              products.category_id = ${category}
-              AND
-              `
-            }
-
-            filterQuery = `${filterQuery}
-            products.name ILIKE '%${filter}%'
-            OR products.description ILIKE '%${filter}%'
-            `
-
-           
-            
-            query = `
-              SELECT products.*,
-              categories.name AS category_name 
-              FROM products 
-              LEFT JOIN categories ON(categories.id = products.category_id)
-              ${filterQuery}
-          
-            `
-
-            return bancodeDados.query(query)
-
-      }
 
     
-}

@@ -86,7 +86,7 @@ module.exports = {
   
                 //personalizando menssagens de erros
                 user : req.body,
-                error : "As Senhas não Consciden"
+                error : "As Senhas não consciden"
               })
   
           

@@ -6,16 +6,15 @@ module.exports  = {
     
    async index(req, res){
         
-            let results = await Product.all()
-            const products = results.rows
-     
+            const products = await Product.findAll()
+    
          
             if(!products) res.send("Product Not-found !")
      
             async function getImage(productID){
-                let results =  await Product.files(productID)
+                let files =  await Product.files(productID)
      
-                const files = results.rows.map(file =>  `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
+                files = files.map(file =>  `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
                 
                 return  files[0]
             }
@@ -31,6 +30,15 @@ module.exports  = {
      
             const lastAdd = await Promise.all(productPromise)
             
+
+            // let b = await Product.find(1)
+
+            //     const product = b.rows[0]
+
+
+            //     console.log(b)
+
+
              return res.render('home/index', { products : lastAdd})
 
         

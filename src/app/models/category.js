@@ -1,10 +1,7 @@
-const bancodeDados = require('../../config/BD_conection')
+const Base = require('./Base')
 
-module.exports = {
-    all(){
-        return bancodeDados.query(`
-            SELECT * FROM categories
-        `)
-    }
+Base.init({table : " categories "})
+
+module.exports =  {
+    ...Base
 }
-

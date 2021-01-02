@@ -9,7 +9,7 @@
             "name": "Launch Program",
             "protocol": "inspector",
             "address": "localhost",
-            "port": 9229
+            "port": 2014
         }
         
     ]

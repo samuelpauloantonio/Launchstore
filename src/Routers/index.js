@@ -43,7 +43,7 @@ routes.get('/products/:id/edit', onlyUSers,  productsController.edit )
 //Files multer- Array e os metodos post, put e delete
 routes.post('/products/', onlyUSers, multer.array('photos', 6), productsController.post )
 routes.put('/products/', onlyUSers, multer.array('photos', 6), productsController.put )
-routes.delete('/',  onlyUSers , productsController.delete )
+routes.delete('/products',  onlyUSers , productsController.delete )
 
 
 
