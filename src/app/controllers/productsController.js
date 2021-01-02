@@ -4,12 +4,9 @@ const { unlinkSync }  = require('fs')
 const category = require("../models/category");
 const Product = require("../models/product");
 const File = require('../models/File')
+const LoadServiceProductService  = require('../services/LoadProductService')
 
 
-const {
-  formatPrice,
-  date
-} = require('../../lib/utils');
 
 
 
@@ -98,42 +95,17 @@ module.exports = {
 
     try {
 
-      const product  = await Product.find(req.params.id)
 
-  
-      if (!product) return res.send('Product Not-found')
-
-
-
-      const {
-        day,
-        hour,
-        minutes,
-        month,
-        year
-      } = date(product.updated_at)
+      const product = await LoadServiceProductService.load('product', { where : {
+        id : req.params.id
+      }})
 
 
-      product.published = {
-        day: `${day}/${month}/${year}`,
-        hour: `${hour}h:${minutes}`,
-      }
+      
 
-      product.old_price = formatPrice(product.old_price)
-      product.price = formatPrice(product.price)
+     
 
-      let files = await Product.files(product.id)
-
-      files = files.map(file => ({
-        ...file,
-        src: `${req.protocol}://${req.headers.host}${file.path.replace("public","")}`
-      }))
-
-
-      return res.render('products/show', {
-        product,
-        files
-      })
+      return res.render('products/show', { product })
     } catch (err) {
       console.error(err)
     }
@@ -144,17 +116,9 @@ module.exports = {
 
     try {
 
-      const product = await Product.find(req.params.id);
-
-
-      if (!product) return res.send("Product Not found");
-
-
-      //Formatando Price
-      product.price = formatPrice(product.price)
-      product.old_price = formatPrice(product.old_price)
-
-
+      const product = await LoadServiceProductService.load('product', { where : {
+        id : req.params.id
+      }})
 
 
 
@@ -163,19 +127,11 @@ module.exports = {
 
 
 
-      //get images
-
-      let files = await Product.files(product.id)
-
-      files = files.map(file => ({
-        ...file,
-        src: `${req.protocol}://${req.headers.host}${file.path.replace("public","")}`
-      }))
-
+    
       return res.render("products/edit", {
         product,
         categories,
-        files
+    
       });
     } catch (error) {
       console.error(error)
@@ -249,7 +205,7 @@ module.exports = {
 
 
 
-        return res.redirect(`/products/${req.body.id}/edit`)
+        return res.redirect(`/products/${req.body.id}`)
 
       }
 

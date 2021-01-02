@@ -7,21 +7,21 @@
     <div class="gallery">
 
         <div class="highlight"> 
-            {%if not files[0] %}
-            <img src="{{files[0].src}}" 
-            alt="{{files[0].name}}"
+            {%if not product.files[0] %}
+            <img src="{{product.files[0].src}}" 
+            alt="{{product.files[0].name}}"
             >
 
             {% else %}
-            <img src="{{files[0].src}}"
-             alt="{{files[0].name}}"
+            <img src="{{product.files[0].src}}"
+             alt="{{product.files[0].name}}"
              onclick = "animationZoomImage.open()"
              >
             {% endif %}
 
             <div class="lightbox-target">
                 <div class="modal-center">
-                    <img src="{{files[0].src}}" alt="{{files[0].name}}">
+                    <img src="{{product.files[0].src}}" alt="{{products.files[0].name}}">
                  <a href="#" class="lightboxClose"
                 onclick = "animationZoomImage.close()"
                  >
@@ -32,7 +32,7 @@
         </div><!--highlight-->
 
         <div class="gallery-preview">
-            {%for image in files %}
+            {%for image in product.files %}
             <img src="{{image.src}}" 
             alt="{{image.name}}"
              {%if loop.index0 == 0 %}
@@ -58,10 +58,10 @@
 
         <div class="price-buy">
             <div class="price">
-                {{product.price}}
+                {{product.formattedPrice}}
 
-                {% if  product.price !== product.old_price %}
-                <span class="old_price"> {{product.old_price}}</span>
+                {% if  product.formattedPrice !== product.formattedOldPrice %}
+                <span class="old_price"> {{product.formattedOldPrice}}</span>
 
                 {% endif %}
             </div>

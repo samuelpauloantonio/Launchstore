@@ -1,7 +1,7 @@
 const Product = require("../models/product");
-const {
-  formatPrice
-} = require("../../lib/utils");
+const LoadServiceProductService  = require('../services/LoadProductService')
+
+
 
 module.exports = {
   async index(req, res) {
@@ -25,26 +25,9 @@ module.exports = {
 
       let products = await Product.search(params);
 
-      async function getImage(product_id) {
-        let files = await Product.files(product_id);
-        files = files.map(
-          (file) =>
-          `${req.protocol}://${req.headers.host}${file.path.replace(
-             "public",
-             ""
-           )}`
-        );
+      // usando o load service  usando a metodologia DRY Dont Repeat yourself
+      const productPromise = products.map(LoadServiceProductService.format)
 
-        return files[0];
-      }
-
-      const productPromise = product.map(async (product) => {
-        product.img = await getImage(product.id);
-        product.oldPrice = formatPrice(product.old_price);
-        product.price = formatPrice(product.price);
-
-        return product;
-      });
 
       products = await Promise.all(productPromise);
 
