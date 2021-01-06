@@ -4,6 +4,7 @@ const multer = require('../app/middlewares/multer')
 const  ValidatorUsers = require('../app/validators/user')
 const  ValidatorSession = require('../app/validators/session')
 const { onlyUSers } = require('../app/middlewares/session')
+const Validate = require('../app/validators/products')
 
 
 
@@ -41,8 +42,8 @@ routes.get('/products/:id/edit', onlyUSers,  productsController.edit )
 
 
 //Files multer- Array e os metodos post, put e delete
-routes.post('/products/', onlyUSers, multer.array('photos', 6), productsController.post )
-routes.put('/products/', onlyUSers, multer.array('photos', 6), productsController.put )
+routes.post('/products/', onlyUSers, multer.array('photos', 6), Validate.post, productsController.post )
+routes.put('/products/', onlyUSers, multer.array('photos', 6),Validate.put,  productsController.put )
 routes.delete('/products',  onlyUSers , productsController.delete )
 
 

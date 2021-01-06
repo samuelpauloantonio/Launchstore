@@ -154,6 +154,29 @@ const Mask = {
         error,
         value
       }
+    },
+
+    allInputs(e){
+     
+      const inputs = document.querySelectorAll('.item select, .item input , .item textarea')
+
+      for(input of inputs) {
+        if(input.value == ""){
+          const  message  = document.createElement('div')
+
+                message.classList.add('messages')
+                message.classList.add('error')
+
+                message.style="position:fixed"
+
+            message.innerHTML = 'Todos os campos são Obrigatórios'
+            document.querySelector('body').append(message)
+
+        e.preventDefault()
+
+        }
+      }
+
     }
   
   

@@ -8,22 +8,21 @@ module.exports = {
 
     try {
 
-      let params = {};
 
-      const {
+      let {
         filter,
         category
-      } = req.query;
+      } = req.query; 
 
-      if (!filter) return res.redirect("/");
+      if (!filter || filter.toLowerCase() == 'toda a loja')  filter = null; 
 
-      params.filter = filter;
 
-      if (category) {
-        params.category = category;
-      }
 
-      let products = await Product.search(params);
+      let products = await Product.search({ filter , category});
+
+
+
+
 
       // usando o load service  usando a metodologia DRY Dont Repeat yourself
       const productPromise = products.map(LoadServiceProductService.format)
@@ -32,7 +31,7 @@ module.exports = {
       products = await Promise.all(productPromise);
 
       const search = {
-        term: req.query.filter,
+        term: filter || 'toda a loja',
         total: products.length,
       };
 

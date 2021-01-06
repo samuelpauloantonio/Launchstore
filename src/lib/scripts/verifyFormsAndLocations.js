@@ -10,12 +10,7 @@ function verficarForms(){
   
       Array.from(inputs).forEach(input =>  {
         
-        // if(input.value == "" ) {
-            
-        //    let  attr  =  input.getAttribute('attr')
-  
-        //     alert(` Por favor preencha o Campo : ${attr}` )
-  
+      
           
   
   

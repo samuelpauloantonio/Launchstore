@@ -28,20 +28,13 @@ module.exports = {
 
 
   async post(req, res) {
-    const keys = Object.keys(req.body);
-
-    for (let key of keys) {
-      if (req.body[key] == "") {
-        return res.send("please fill all fields");
-      }
-    }
-
-    //verificao de imagens
-    if (req.files.length == 0) {
-      return res.send('Please, send at least one image')
-    }
+    
 
 
+    //validate 
+
+
+    
     try {
 
 
@@ -99,6 +92,13 @@ module.exports = {
       const product = await LoadServiceProductService.load('product', { where : {
         id : req.params.id
       }})
+
+      
+
+     product.files =  product.files.filter((files, index) => index > 2 ? false : true )
+
+
+
 
 
       
