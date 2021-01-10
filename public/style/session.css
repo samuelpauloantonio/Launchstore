@@ -1,3 +1,9 @@
+
+section.login{
+    max-width: 700px;
+}
+
+
 section.login, .password{
   display: flex;
   flex-direction: column;
@@ -25,3 +31,4 @@ section.login #footer ul li a:hover{
     font-weight: bold;
     transition: all 20ms ease-in;
 }
+

@@ -142,6 +142,7 @@ ON DELETE CASCADE;
 DELETE FROM products;
 DELETE FROM users;
 DELETE FROM files;
+DELETE FROM session;
 
 
 -- restart sequence auto_increment  from tables ids

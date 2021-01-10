@@ -8,7 +8,6 @@
 .accounts:hover .submenu{
     opacity: 1;
     visibility: visible;
-    transition: all 0ms ease-in;
     
 
 
@@ -16,12 +15,12 @@
 
 
 .accounts .submenu {
-    opacity: 0;
+    opacity: 1;
     visibility: hidden;
-    transition: all 100ms ease-out;
+
 
     position: absolute;
-    top: 0;
+    top: -30px;
     width: 150px;
     
     margin-top: 32px;

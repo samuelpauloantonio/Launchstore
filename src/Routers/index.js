@@ -11,7 +11,7 @@ const Validate = require('../app/validators/products')
 const HomeControllers = require("../app/controllers/HomeController")
 const UserController = require('../app/controllers/UserController')
 const sessionControler = require('../app/controllers/SessionController')
-
+const OrderController = require('../app/controllers/OrderController')
 // const users = require('./users')
 // const products = require('./products')
 
@@ -43,7 +43,7 @@ routes.get('/products/:id/edit', onlyUSers,  productsController.edit )
 
 //Files multer- Array e os metodos post, put e delete
 routes.post('/products/', onlyUSers, multer.array('photos', 6), Validate.post, productsController.post )
-routes.put('/products/', onlyUSers, multer.array('photos', 6),Validate.put,  productsController.put )
+routes.put('/products/', onlyUSers, multer.array('photos', 6),Validate.put, productsController.put )
 routes.delete('/products',  onlyUSers , productsController.delete )
 
 
@@ -75,6 +75,7 @@ routes.get('/products/ads/create', (req, res) => {
 
 // //login/logout 
     const { isLogedRedirectToUsers} = require('../app/middlewares/session')
+const { on } = require("../lib/nodemailer")
 
 
 routes.get('/users/login', isLogedRedirectToUsers,  sessionControler.loginForm)                 
@@ -99,9 +100,19 @@ routes.get('/users/register', UserController.registerForm)
 routes.post('/users/register', ValidatorUsers.post, UserController.post)
 
 
+
+
+
  routes.get('/users', ValidatorUsers.show, UserController.show)
 routes.put('/users', ValidatorUsers.put , UserController.put)
 routes.delete('/users', UserController.delete)
+
+
+//users show products
+
+routes.get('/users/ads',onlyUSers, UserController.ads)
+routes.post('/users/orders',onlyUSers, OrderController.post)
+
 
 
 

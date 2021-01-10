@@ -1,0 +1,24 @@
+{% macro render(title, classes) %}
+    <section class="card {{classes}}">
+
+
+        <div class="card-header">
+            <h3> {{title}} </h3>
+        </div>
+
+        <div class="card-container">
+
+            <!--tudo o  que eu colocar dentro da
+            funcao caller quando eu chamar noutro lado vai ser dinamico
+            -->
+
+
+            {{ caller() }}
+
+        </div>
+    </section>
+
+
+{% endmacro %}
+
+

@@ -16,9 +16,11 @@ function find(filters, table) {
 
    })
 
+
   }
 
-  
+  // query = `${query} ORDER BY updated_at ASC`
+
 
     return DB.query(query)
 }
@@ -71,6 +73,8 @@ const Base = {
   async findAll(filters){
     const results = await find( filters, this.table )
 
+
+ 
     return results.rows
   }, 
 

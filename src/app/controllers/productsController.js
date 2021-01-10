@@ -93,17 +93,9 @@ module.exports = {
         id : req.params.id
       }})
 
-      
-
-     product.files =  product.files.filter((files, index) => index > 2 ? false : true )
 
 
 
-
-
-      
-
-     
 
       return res.render('products/show', { product })
     } catch (err) {
@@ -119,6 +111,9 @@ module.exports = {
       const product = await LoadServiceProductService.load('product', { where : {
         id : req.params.id
       }})
+
+
+
 
 
 
@@ -189,7 +184,9 @@ module.exports = {
 
       if (req.body.old_price != req.body.price) {
 
+        
         const oldProduct = await Product.find(req.body.id)
+
 
         req.body.old_price = oldProduct.price
 
@@ -199,7 +196,7 @@ module.exports = {
           description: req.body.description,
           old_price: req.body.old_price,
           price: req.body.price,
-          quantity: req.body.quantity,
+          quantity:req.body.quantity,
           status: req.body.status
         })
 

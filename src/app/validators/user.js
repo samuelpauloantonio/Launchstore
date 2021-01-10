@@ -118,6 +118,7 @@ module.exports = {
 
       const user  = await Users.findOne({where : {id} })
 
+      console.log(user)
 
       const  passed =  await compare( password , user.password)
 

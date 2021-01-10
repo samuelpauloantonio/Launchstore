@@ -2,9 +2,11 @@ const { unlinkSync } = require("fs");
 const { hash } = require('bcryptjs')
 
 const Users = require("../models/users");
-const Products  = require("../models/product");
+const Products  = require("../models/product"); 
+const LoadProductsServices = require('../services/LoadProductService')
 
 const { formatCep, formatCpfCnpj } = require("../../lib/utils");
+const LoadService = require("../services/LoadProductService");
 
 module.exports = {
   registerForm(req, res) {
@@ -112,4 +114,17 @@ module.exports = {
       });
     }
   },
+
+
+  async ads(req, res){
+
+    const  products = await LoadProductsServices.load('products', {
+      where : { user_id : req.session.userId }
+    })
+
+    console.log(products)
+
+    return res.render('user/ads', { products })
+    
+  }
 };

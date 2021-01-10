@@ -26,7 +26,7 @@ async function createUsers (){
             cpf_cnpj : faker.random.number(99999),
             cep :faker.random.number(99999) ,
             address : faker.address.streetAddress()
-        })
+        }) 
     }
 
 
