@@ -57,8 +57,10 @@ CREATE TABLE "users" (
   "address" text,
   "created_at" timestamp DEFAULT (now()),
   "updated_at" timestamp DEFAULT (now())
-);
+); 
 
+ALTER TABLE "users" ADD COLUMN reset_token text;
+ALTER TABLE "users" ADD COLUMN reset_token_expires text;
 
 -- FORENGIN KEY 
 

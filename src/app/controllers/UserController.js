@@ -122,7 +122,6 @@ module.exports = {
       where : { user_id : req.session.userId }
     })
 
-    console.log(products)
 
     return res.render('user/ads', { products })
     

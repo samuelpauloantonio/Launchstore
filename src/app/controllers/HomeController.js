@@ -10,6 +10,7 @@ module.exports  = {
             try {
                 
                 
+                
                 const allProducts = await LoadServiceProductService.load('products')
                
 
@@ -25,6 +26,8 @@ module.exports  = {
                 console.log(error)
             }
     
+
+        
    
 
 

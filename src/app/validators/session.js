@@ -18,7 +18,7 @@ async function login(req, res, next){
 
     const  passed  = await compare(password , user.password)
 
-
+ 
     if(!passed) return res.render('session/login', {
         user : req.body,
         error : "Senha incorreta"
@@ -26,6 +26,8 @@ async function login(req, res, next){
 
 
     req.user = user
+
+    
 
     next()
 

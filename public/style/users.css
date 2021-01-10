@@ -18,14 +18,13 @@
 }
 
 
-.users-ads .item .image{
+.users-ads .item img{
     width: 100px;
     height: 100px;
 
-    background-position:center ;
-    background-repeat: no-repeat;
-    background-size:cover ;
 
+    object-fit: cover;
+    object-position: center;
 
     border-radius: 8px;
     border: 1px solid #eee;

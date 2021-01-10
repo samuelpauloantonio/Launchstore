@@ -21,6 +21,9 @@ module.exports = {
 
         req.session.userId = req.user.id
 
+
+     
+
         return res.redirect('/users')
     },
 
@@ -39,6 +42,7 @@ module.exports = {
 
     async forgot(req, res) {
 
+    
         const user = req.user
     
 
