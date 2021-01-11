@@ -12,6 +12,8 @@ const HomeControllers = require("../app/controllers/HomeController")
 const UserController = require('../app/controllers/UserController')
 const sessionControler = require('../app/controllers/SessionController')
 const OrderController = require('../app/controllers/OrderController')
+const CartController = require('../app/controllers/CartController')
+
 // const users = require('./users')
 // const products = require('./products')
 
@@ -75,7 +77,6 @@ routes.get('/products/ads/create', (req, res) => {
 
 // //login/logout 
     const { isLogedRedirectToUsers} = require('../app/middlewares/session')
-const { on } = require("../lib/nodemailer")
 
 
 routes.get('/users/login', isLogedRedirectToUsers,  sessionControler.loginForm)                 
@@ -114,6 +115,9 @@ routes.get('/users/ads',onlyUSers, UserController.ads)
 routes.post('/users/orders',onlyUSers, OrderController.post)
 
 
+
+
+routes.get('/cart/', CartController.index)
 
 
 
