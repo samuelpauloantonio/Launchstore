@@ -135,8 +135,7 @@ header .container h2 {
 
 nav .primary ul {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   justify-items: center;
   grid-gap: 10px;
 }
