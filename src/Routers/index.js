@@ -12,15 +12,19 @@ const HomeControllers = require("../app/controllers/HomeController")
 const UserController = require('../app/controllers/UserController')
 const sessionControler = require('../app/controllers/SessionController')
 const OrderController = require('../app/controllers/OrderController')
-const CartController = require('../app/controllers/CartController')
+const Cart = require('./cart')
 
 // const users = require('./users')
 // const products = require('./products')
 
 
+
+
 //Home
 routes.get("/", HomeControllers.index)
 
+//cart 
+routes.use('/cart', Cart)
 
 // Products 
 
@@ -33,7 +37,7 @@ const searchController = require('../app/controllers/searchController')
 
 routes.get('/products/create', onlyUSers, productsController.create)
 //Search 
-routes.get('/products/search', onlyUSers , searchController.index)
+routes.get('/products/search' , searchController.index)
 
 
 
@@ -117,7 +121,6 @@ routes.post('/users/orders',onlyUSers, OrderController.post)
 
 
 
-routes.get('/cart/', CartController.index)
 
 
 

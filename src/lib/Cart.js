@@ -25,11 +25,11 @@ const Cart = {
 
     addOne(product){
 
-        //ver se já  existe produto no carrnho
+        //ver se já  existe produto no carrinho
 
         let inCart = this.getCartItem(product.id)
 
-
+ 
         if(!inCart){
             inCart = {
                 product : {
@@ -64,7 +64,7 @@ const Cart = {
         return this
 
     },
-    remoceOne(productId){
+    removeOne(productId){
 
         let inCart  = this.getCartItem(productId)
 
@@ -128,26 +128,26 @@ const Cart = {
 
 
 
-const product = {
-    id: 1,
-    price : 199,
-    quantity : 2
-}
+// const product = {
+//     id: 1,
+//     price : 199,
+//     quantity : 2
+// }
 
 
-console.log('add firts card item ')
-let oldcart = Cart.init().addOne(product)
-console.log(oldcart)
+// console.log('add firts card item ')
+// let oldcart = Cart.init().addOne(product)
+// console.log(oldcart)
 
 
-console.log('add second cart item')
-oldcart = Cart.init(oldcart).addOne(product)
-console.log(oldcart)
+// console.log('add second cart item')
+// oldcart = Cart.init(oldcart).addOne(product)
+// console.log(oldcart)
 
 
-console.log('delete one  item  ')
-oldcart = Cart.init(oldcart).delete(product.id)
-console.log(oldcart)
+// console.log('delete one  item  ')
+// oldcart = Cart.init(oldcart).delete(product.id)
+// console.log(oldcart)
 
 
 module.exports  = Cart;

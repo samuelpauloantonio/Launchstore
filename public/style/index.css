@@ -216,7 +216,7 @@ textarea {
   min-height: 126px;
 }
 
-.item span {
+.item span{
   display: inline-block;
   background-color: var(--primary-color);
   font-size: 12px !important;
