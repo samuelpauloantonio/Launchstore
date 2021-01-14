@@ -136,3 +136,20 @@
     background: rgb(0, 220, 64) !important;
 
 }
+
+
+/* carrinho vazio */
+
+
+.cart-empty {
+    text-align : center;
+}
+
+.cart-empty  p {
+    font-size: 16px;
+}
+
+.cart-empty .button {
+    width: 240px;
+    margin: 16px auto;
+}

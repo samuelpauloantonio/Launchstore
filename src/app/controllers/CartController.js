@@ -18,6 +18,7 @@ module.exports = {
             cart = Cart.init(cart)
 
 
+
             console.log(req.session.cart)
 
             return res.render('Cart/index', { cart })
@@ -78,6 +79,21 @@ module.exports = {
         req.session.cart = cart 
 
         // redirecionar para a pagina cart
+
+        return res.redirect('/cart')
+    },
+
+    delete(req, res){
+
+        const { id } = req.params 
+
+
+        let { cart } = req.session 
+
+
+        if(!cart) return 
+
+        req.session.cart = Cart.init(cart).delete(id)
 
         return res.redirect('/cart')
     }
