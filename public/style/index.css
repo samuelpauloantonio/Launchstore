@@ -135,8 +135,7 @@ header .container h2 {
 
 nav .primary ul {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   justify-items: center;
   grid-gap: 10px;
 }
@@ -216,7 +215,7 @@ textarea {
   min-height: 126px;
 }
 
-.item span {
+.item span{
   display: inline-block;
   background-color: var(--primary-color);
   font-size: 12px !important;
@@ -245,7 +244,7 @@ input[type="radio"] {
   margin: 16px 0;
   border-radius: 4px;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 15px;
   text-align: center;
   text-transform: uppercase;
   cursor: pointer;

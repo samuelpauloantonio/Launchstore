@@ -13,9 +13,10 @@ const UserController = require('../app/controllers/UserController')
 const sessionControler = require('../app/controllers/SessionController')
 const OrderController = require('../app/controllers/OrderController')
 
-
 // const users = require('./users')
 // const products = require('./products')
+
+
 
 
 //Home
@@ -33,7 +34,7 @@ const searchController = require('../app/controllers/searchController')
 
 routes.get('/products/create', onlyUSers, productsController.create)
 //Search 
-routes.get('/products/search', onlyUSers , searchController.index)
+routes.get('/products/search' , searchController.index)
 
 
 
@@ -113,11 +114,6 @@ routes.delete('/users', UserController.delete)
 
 routes.get('/users/ads',onlyUSers, UserController.ads)
 routes.post('/users/orders',onlyUSers, OrderController.post)
-
-
-
-
-
 
 
 
