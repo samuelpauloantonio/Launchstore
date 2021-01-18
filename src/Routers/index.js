@@ -11,8 +11,8 @@ const Validate = require('../app/validators/products')
 const HomeControllers = require("../app/controllers/HomeController")
 const UserController = require('../app/controllers/UserController')
 const sessionControler = require('../app/controllers/SessionController')
-const OrderController = require('../app/controllers/OrderController')
 const Cart = require('./cart')
+const Orders = require('./orders')
 
 // const users = require('./users')
 // const products = require('./products')
@@ -25,6 +25,7 @@ routes.get("/", HomeControllers.index)
 
 //cart 
 routes.use('/cart', Cart)
+routes.use('/orders', Orders)
 
 // Products 
 
@@ -116,7 +117,6 @@ routes.delete('/users', UserController.delete)
 //users show products
 
 routes.get('/users/ads',onlyUSers, UserController.ads)
-routes.post('/users/orders',onlyUSers, OrderController.post)
 
 
 

@@ -23,7 +23,7 @@ module.exports  = {
                 return res.render('home/index', { products })
 
             } catch (error) {
-                console.log(error)
+            console.error(error)
             }
     
 
