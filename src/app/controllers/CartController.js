@@ -1,5 +1,4 @@
 
-const { addOne } = require('../../lib/Cart')
 const Cart = require('../../lib/Cart')
 
 const LoadProductService = require('../services/LoadProductService')
@@ -17,9 +16,6 @@ module.exports = {
 
             cart = Cart.init(cart)
 
-
-
-            console.log(req.session.cart)
 
             return res.render('Cart/index', { cart })
 
