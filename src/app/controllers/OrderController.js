@@ -40,18 +40,27 @@ module.exports = {
             console.error(error)
         }
     },
+    async show(req, res){
+
+      const order = await LoadOrdersService.load('order', {where :  { id: req.params.id }}) 
+  
+       
+       return res.render('orders/details', { order })
+    },
     async seller(req, res) {
       try {
           
-          const seles = await LoadOrdersService.load('orders', {
+          const sales = await LoadOrdersService.load('orders', {
             where: {seller_id : req.session.userId}
           })
 
-          return res.render('orders/seles', { seles })
+          return res.render('orders/sales', { sales })
       } catch (error) {
           console.error(error)
       }
   },
+
+
     async post(req, res) {
         try {
           //pegar os produtos do carrinho

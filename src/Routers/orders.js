@@ -10,6 +10,7 @@ const routes = express.Router();
 routes.post('/', onlyUSers, OrderController.post)
         .get('/', onlyUSers, OrderController.index)
         .get('/sales', onlyUSers, OrderController.seller)
+        .get('/:id', onlyUSers, OrderController.show)
         
 
 
