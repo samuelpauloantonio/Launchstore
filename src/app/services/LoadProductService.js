@@ -57,6 +57,7 @@ const LoadService = {
         try{
 
             const product = await  Product.findOne(this.filter)
+            
             return format(product)
 
         }catch(error){

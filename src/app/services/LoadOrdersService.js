@@ -9,6 +9,7 @@ async function format(order){
 
                 // detalhes do produto 
                 order.product = await LoadProductService.load('product', { where: { id: order.buyer_id } })
+             
                 // detalhes do comprador
                 order.buyer = await Users.findOne({
                     where: { id: order.buyer_id }
@@ -29,7 +30,7 @@ async function format(order){
 
                 const statuses = {
                     open: "Aberto",
-                    sold: "vendido",
+                    sold: "Vendido",
                     canceled: "Cancelado"
                 }
 

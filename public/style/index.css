@@ -133,28 +133,48 @@ header .container h2 {
   font-size: 16px;
 }
 
-nav .primary ul {
+nav .primary > ul {
   width: 100%;
   display: flex;
   justify-items: center;
   grid-gap: 10px;
+
 }
 
-nav .primary ul li a {
+nav .primary  li  .dropdown {
+  padding: 0;
+
+}
+
+nav .primary > ul >  li > a {
   color: white;
   display: flex;
   align-items: center;
+
+  height: 48px;
+  padding: 0;
 }
 
-nav .primary ul li a:hover {
+nav .primary > ul >  li >  a:hover {
   color: var(--primary-color);
   transition: color 100ms ease-in;
 }
 
-nav .primary ul li a i {
+nav .primary >  ul > li > a > i {
   margin-right: 8px;
 }
 
+
+.dropdown .button {
+  background-color: #d31c1c;
+    margin: 0;
+    justify-content: center;
+    color: white;
+}
+.dropdown .button:hover{
+  background-color: #d31c1c;
+
+}
 /*FORM*/
 
 section.form {
