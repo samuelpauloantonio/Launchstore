@@ -30,7 +30,7 @@ async function format(order){
 
                 const statuses = {
                     open: "Aberto",
-                    sold: "vendido",
+                    sold: "Vendido",
                     canceled: "Cancelado"
                 }
 
