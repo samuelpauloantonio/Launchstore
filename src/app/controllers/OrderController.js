@@ -135,6 +135,60 @@ module.exports = {
           console.error(error);
           return res.render("orders/error");
         }
+      },
+
+
+      async update(req, res){
+
+
+        try{
+
+        const  { id , action } = req.params
+
+        const aceppedtedActions = ['close', 'cancel']
+
+
+        if(!aceppedtedActions.includes(action)) return res.send('can´t do this action ')
+
+        //pegar o pedido
+ 
+        const order = await Orders.findOne({
+          where : { id: id } 
+        })
+        
+        if(!order) return  res.send('can´t do this actions ')
+
+        //verificar se ele esta aberto
+        
+        if(order.status != 'open') return  res.send('can´t do this actions ')
+
+
+
+        //actualizar o pedido
+
+        const statuses = {
+          close : "sold",
+          cancel : "canceled"
+        }
+
+
+        order.status = statuses[action]
+
+
+
+        
+        await Orders.update(id, {
+          status : order.status
+        })
+
+        return res.redirect('/orders/sales')
+
+        }catch(error){
+          console.error(error)
+        }
+        
+        
+        
       }
     
     
