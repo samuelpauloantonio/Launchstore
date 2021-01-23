@@ -5,6 +5,7 @@ const Users = require("../models/users");
 const Orders = require("../models/Orders");
 const mailer = require("../../lib/nodemailer");
 const Cart = require("../../lib/Cart");
+const { formatPrice } = require('../../lib/utils')
 
 const email = (seller, product, buyer, quantity, total) => `
 <h2> Olá ${seller.name} </h2>
@@ -43,7 +44,7 @@ module.exports = {
     async show(req, res){
 
       const order = await LoadOrdersService.load('order', {where :  { id: req.params.id }}) 
-  
+      console.log(order) 
        
        return res.render('orders/details', { order })
     },
@@ -51,7 +52,7 @@ module.exports = {
       try {
           
           const sales = await LoadOrdersService.load('orders', {
-            where: {seller_id : req.session.userId}
+            where: {seller_id : req.session.userId} 
           })
 
           return res.render('orders/sales', { sales })
