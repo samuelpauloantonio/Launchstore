@@ -8,7 +8,8 @@ const Orders =  require('../models/Orders')
 async function format(order){
 
                 // detalhes do produto 
-                order.product = await LoadProductService.load('product', { where: { id: order.buyer_id } })
+                order.product = await LoadProductService.load('productWithDeleted', { 
+                    where: { id: order.product_id} })
              
                 // detalhes do comprador
                 order.buyer = await Users.findOne({
@@ -28,7 +29,7 @@ async function format(order){
 
                 //formatação do status
 
-                const statuses = {
+                const statuses = { 
                     open: "Aberto",
                     sold: "Vendido",
                     canceled: "Cancelado"
@@ -40,6 +41,8 @@ async function format(order){
 
 
                 const updatedAt = date(order.updated_at)
+
+               
 
                 order.formattedUpdatedAt = `${order.formattedStatus} em
                  ${updatedAt.day}/${updatedAt.month}/${updatedAt.year} ás ${updatedAt.hour} horas : ${updatedAt.minutes} minutos`
